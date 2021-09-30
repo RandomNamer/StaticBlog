@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlogTest/img/favicon.png">
+  <link rel="icon" href="/StaticBlogTest/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="简简单单搭一个Hexo博客，以及用Github Pages免费托管它">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta name="description" content="简简单单搭一个Hexo博客，以及用Github Pages免费托管它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Hexo和Github Pages搭建静态博客">
+<meta property="og:url" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="简简单单搭一个Hexo博客，以及用Github Pages免费托管它">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923153307744.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923153437095.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923153532574.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923153738209.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923160421280.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923161332399.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210930125831154.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210930130025608.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210930143453754.png">
+<meta property="og:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210930130535951.png">
+<meta property="article:published_time" content="2021-09-30T06:46:25.000Z">
+<meta property="article:modified_time" content="2021-09-30T07:11:30.869Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Frontend">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2021/09/30/%E7%94%A8Hexo%E5%92%8CGithub%20Pages%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20210923153307744.png">
+  
+  <title>用Hexo和Github Pages搭建静态博客 - My Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlogTest/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlogTest/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlogTest/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlogTest/css/layout.css">
+<link rel="stylesheet" href="/StaticBlogTest/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlogTest/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlogTest/local-search.xml"};
+  </script>
+  <script  src="/StaticBlogTest/js/utils.js" ></script>
+  <script  src="/StaticBlogTest/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlogTest/">
+      <strong>StaticBlogTest</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlogTest/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlogTest/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlogTest/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlogTest/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="用Hexo和Github Pages搭建静态博客">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-30 14:46" pubdate>
+        September 30, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">用Hexo和Github Pages搭建静态博客</h1>
+            
+            <div class="markdown-body">
+              <h1 id="用Hexo和Github-Pages搭建静态博客"><a href="#用Hexo和Github-Pages搭建静态博客" class="headerlink" title="用Hexo和Github Pages搭建静态博客"></a>用Hexo和Github Pages搭建静态博客</h1><p>个人博客曾经具有很高的门槛，因此在世纪之初时国内涌现了一大批在线博客平台。曾经搭建一个个人博客需要自己编写后端和前端，搞定域名解析服务，并付出不小数目的资金来维持它以合理的速度运行。在2021年，如果只是想体验属于自己的博客，则完全不需要这么做。对于纯静态展示用途（事实上这也是博客最基本、最重要的用途）而言，只需要一个（好看的）静态网页和一个托管平台即可。Github Pages就是这样一个托管平台，它依托于Github的Repository，使用简便，且完全不收费。我们可以直接编写静态前端，用Git推送到远端，就可以自动完成部署。Hexo就是这样一个静态博客生成工具，用它可以更简便地创建静态博客。两者结合就可以在数分钟内完成自己第一个博客的搭建。</p>
+<h2 id="设置GitHub-Pages"><a href="#设置GitHub-Pages" class="headerlink" title="设置GitHub Pages"></a>设置GitHub Pages</h2><p>在GitHub中新建一个Repository，然后在设置中开启Github Pages托管。</p>
+<img src="image-20210923153307744.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<p>使用Theme-Chooser，可以生成一个缺省的页面，内容由一个Markdown文档填充。这个markdown文档也是支持嵌入HTML链接的。</p>
+<img src="image-20210923153437095.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<p>在简单调整之后，我们可以看到一个可以正常显示的静态网页，说明GitHub Pages已经创建成功。</p>
+<img src="image-20210923153532574.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<h2 id="使用Hexo生成静态博客"><a href="#使用Hexo生成静态博客" class="headerlink" title="使用Hexo生成静态博客"></a>使用Hexo生成静态博客</h2><p>Hexo是一个在Node.js上运行的工具，为了使用它，首先要确保已经安装Node.</p>
+<img src="image-20210923153738209.png" srcset="/StaticBlogTest/img/loading.gif" lazyload style="zoom:50%;" />
+
+<p><code>npm</code>是Node的包管理工具，我们可以用它安装Hexo。（在macOS上，如果是第一次安装Node，npm可能缺乏文件写权限，可以使用<code>sudo chown -R $USER /usr/local/lib/node_modules</code> 为其添加权限解决。）</p>
+<p>一切顺利的话，我们就可以使用<code>npm install -g hexo-cli</code>安装Hexo了。</p>
+<p>安装完成后，我们就有了hexo的命令行工具，通过<code>hexo init</code>可以初始化一个博客模版：</p>
+<img src="image-20210923160421280.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<p>要将其编译为可用的html网页，执行<code>hexo generate </code>即可。要在浏览器预览，可以使用<code>hexo server</code>, 在本地开启一个服务器进行预览。</p>
+<img src="image-20210923161332399.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>一个简单的想法是，每次都在本地手动构建博客，然后推送到GitHub完成更新。但是我们需要将构建后的网页送往Github Pages所用的分支，而源码留在另一个分支。</p>
+<p>这里有两种推荐的操作。</p>
+<ul>
+<li>得益于GitHub可以集成的CI功能，我们不必每次都手动构建，而是<strong>让CI系统帮助我们构建并发布到GitHub Pages绑定的分支</strong>。按照官网的教程：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E7%9B%B8%E5%85%B3%E7%9A%84Travis">https://hexo.io/zh-cn/docs/github-pages，我们需要配置一个相关的Travis</a> CI服务。注意，Travis CI只对开源Repo有效。</li>
+<li>所以如果想使用私有Repo托管的话，就只能使用<code>hexo-deployer-cli</code>进行部署。Hexo Deployer只需要在<code>_config.yml</code>里进行<a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment#Git">简单配置</a>后，每次只需要用<code>hexo clean &amp;&amp; hexo deploy</code> 即可完成部署。</li>
+</ul>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>这里简单介绍下如何配置Deployer和在本地撰写并发布的工作流程</p>
+<h3 id="Deployer配置和使用"><a href="#Deployer配置和使用" class="headerlink" title="Deployer配置和使用"></a>Deployer配置和使用</h3><p>要使用Deployer，只需要在<code>_config.yml</code>中配置四个项目即可，下面是一个示例配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/RandomNamer/StaticBlogTest.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">gh-pages</span><br>  <span class="hljs-attr">message:</span> <span class="hljs-string">Update</span> <span class="hljs-string">pages</span> <span class="hljs-string">with</span> <span class="hljs-string">local</span> <span class="hljs-string">changes</span> <span class="hljs-string">on</span> &#123;&#123; <span class="hljs-string">now(&#x27;YYYY-MM-DD&#x27;)</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>只需要填入正确的repo地址，Github Pages分支和commit message即可。</p>
+<p>deployer的操作就是先进行一次生成，再将生成的文件提交到指定的分支，commit message就是之前配置的<code>message</code>。</p>
+<p>在部署时，只需要执行<code>hexo clean &amp;&amp; hexo d</code>即可将本地的网站与远端同步</p>
+<h3 id="正确加载资源"><a href="#正确加载资源" class="headerlink" title="正确加载资源"></a>正确加载资源</h3><p>要让网站能正确地工作，还需要最后一步，那就是在<code>_config.yml</code>中配置网站的URL。这个URL决定了生成页面中所有链接的具体指向和加载CSS、JS和其他资源文件的路径。如果加载不当，恐怕就会是这样：</p>
+<img src="image-20210930125831154.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<p>正确配置之后，再执行一次（生成和）部署，正确的网页就可以在GitHub Pages上查看了：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">https://randomnamer.github.io/</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/StaticBlogTest/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></code></pre></td></tr></table></figure>
+
+<img src="image-20210930130025608.png" srcset="/StaticBlogTest/img/loading.gif" lazyload  style="zoom:50%;" />
+
+<h3 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h3><h4 id="Front-Matters"><a href="#Front-Matters" class="headerlink" title="Front Matters"></a>Front Matters</h4><p>Hexo使用markdown写作，或者说，使用Markdown的语法进行写作。Hexo有一种被称为<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">Front Matter</a>的语法，用于对每篇文章进行一定程度上的自定义，如指定网页名称，嵌入封面图，指定文章作者和tag等.</p>
+<p>Front Matter可以使用yaml撰写，也可以使用JSON撰写：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">World</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:25</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json">;;;<br><span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;Hello World&quot;</span>,<br><span class="hljs-string">&quot;date&quot;</span>: <span class="hljs-string">&quot;2013/7/13 20:46:25&quot;</span><br>;;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="与HTML集成"><a href="#与HTML集成" class="headerlink" title="与HTML集成"></a>与HTML集成</h4><p>如果用过Typora的话，就会对其中嵌入HTML标签的功能印象深刻，他可以让Markdown文档呈现出不属于Markdown规范的丰富样式，甚至可以通过iframe嵌入其他网页的内容。</p>
+<img src="image-20210930143453754.png" srcset="/StaticBlogTest/img/loading.gif" lazyload style="zoom:50%;" />
+
+<p>Hexo也完全支持内嵌HTML，这样文章不仅可以有着丰富的自定义能力，也可以与Typora完全兼容。</p>
+<h4 id="本地撰写实践"><a href="#本地撰写实践" class="headerlink" title="本地撰写实践"></a>本地撰写实践</h4><p>Hexo-cli提供了创建新文章的方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">➜  StaticBlogTest git:(develop) ✗ hexo new ArticleTest<br>INFO  Validating config<br>INFO  Created: ~/Documents/GitHub/StaticBlogTest/source/_posts/ArticleTest.md<br></code></pre></td></tr></table></figure>
+
+<p>默认状态下，它只会在指定文件夹下创建一个markdown文件。我们可以用任何markdown编辑器进行撰写，也可以将已经撰写的markdown文件拷贝到<code>source/_posts</code>路径下，形成一篇新的文章。</p>
+<p>在撰写完成之后，可以用<code>hexo clean &amp;&amp; hexo s</code>进行预览</p>
+<h2 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h2><p>前端的魅力在于更便捷更自由地设计自己想要的外观，Hexo也有着丰富的自定义主题，并且也可以自己开发定制主题。</p>
+<p>在Github上和Hexo官网上都有大量的主题</p>
+<img src="image-20210930130535951.png" srcset="/StaticBlogTest/img/loading.gif" lazyload style="zoom:33%;" />
+
+<p>只需要主题下载到<code>themes</code>文件夹下，在<code>_config.yml</code>中引用这个主题的名字（文件夹名）就可以使用这个主题。不同的主题提供了丰富的配置项目，可以对其进行进一步定制。同时，所有的主题也都是使用标准前端技术构建的，也可以自己对主题进行修改和定制。</p>
+<p>比如我这里使用的主题<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>，其文章页的目录就只能居右，通过对它的模版进行修改，可以自定义布局，在左边显示目录，同时使正文不强制居中(space-evenly)。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>几个小时下来，Hexo这个静态博客生成框架还是给了我不少惊喜，首先就是文章撰写十分容易，可以直接在熟悉的Typora上完成，Front—Matter也让我可以实现对文章样式的控制。几年来全球各地开发者贡献的的模版和插件也数不胜数，很多都让人眼前一亮。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlogTest/tags/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlogTest/tags/Blog/">Blog</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlogTest/tags/Frontend/">Frontend</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlogTest/2021/09/30/ArticleTest/">
+                        <span class="hidden-mobile">ArticleTest</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlogTest/js/events.js" ></script>
+<script  src="/StaticBlogTest/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlogTest/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlogTest/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlogTest/js/boot.js" ></script>
+
+
+</body>
+</html>
