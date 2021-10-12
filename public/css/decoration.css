@@ -1,0 +1,15 @@
+.child-divider-container > * {
+    padding-bottom: 15px;
+    border-bottom: 0px;
+    /* border-bottom: 1px solid darkgray; */
+}
+.child-divider-container:last-child {
+    border: 0px;
+}
+#placeholder-with-divider {
+    border-top: 0.5px solid darkgray; 
+    height: 15px;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}

@@ -1,5 +1,5 @@
 .child-divider-container > * {
-    padding-bottom: 15px;
+    padding-bottom: 0px;
     border-bottom: 0px;
     /* border-bottom: 1px solid darkgray; */
 }
@@ -7,9 +7,12 @@
     border: 0px;
 }
 #placeholder-with-divider {
-    border-top: 0.5px solid darkgray; 
-    height: 15px;
-    width: 90%;
+    border-top: 0.5px solid lightgray; 
+    height: 1.5rem;
+    width: 92%;
     display: block;
     margin: 0 auto;
+}
+.card-height-control{
+    margin-bottom: 1.5rem;
 }

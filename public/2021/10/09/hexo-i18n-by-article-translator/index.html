@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlog/img/favicon.png">
+  <link rel="icon" href="/StaticBlog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="I built a markdown translation utility by JS using Google Translation API.">
+  <meta name="author" content="Zeyu Zhang">
+  <meta name="keywords" content="">
+  <meta name="description" content="I built a markdown translation utility by JS using Google Translation API.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown Auto Translation">
+<meta property="og:url" content="https://randomnamer.github.io/2021/10/09/hexo-i18n-by-article-translator/index.html">
+<meta property="og:site_name" content="A Random Blog">
+<meta property="og:description" content="I built a markdown translation utility by JS using Google Translation API.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://randomnamer.github.io/2021/10/09/hexo-i18n-by-article-translator/image-20211012150904830.png">
+<meta property="article:published_time" content="2021-10-09T10:59:37.000Z">
+<meta property="article:modified_time" content="2021-10-12T08:19:38.262Z">
+<meta property="article:author" content="Zeyu Zhang">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="i18n">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2021/10/09/hexo-i18n-by-article-translator/image-20211012150904830.png">
+  
+  <title>Markdown Auto Translation - A Random Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlog/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlog/css/layout.css">
+<link rel="stylesheet" href="/StaticBlog/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlog/local-search.xml"};
+  </script>
+  <script  src="/StaticBlog/js/utils.js" ></script>
+  <script  src="/StaticBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlog/">
+      <strong>StaticBlogTest</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/../">
+                <i class="iconfont icon-in-alt"></i>
+                中文
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Markdown Auto Translation">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-09 18:59" pubdate>
+        October 9, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Markdown Auto Translation</h1>
+            
+             
+              <p class="note note-primary"> This Page is translated by <span> <a target="_blank" rel="noopener" href="https://github.com/RandomNamer/MarkdownTranslator">Auto Translation Tools</a></span>. Some text may be inaccurate or ambiguous.</p>
+             
+            <div class="markdown-body">
+              <p>When building a personal blog, we often have international needs. Technically, various blog frameworks have complete i18n solutions, so the biggest challenge for bloggers is content translation. Driven by artificial intelligence, machine translation has been quite perfect, and it is obviously no problem to meet the reading needs of readers in other languages, so a very realistic solution is to develop an automatic translation tool for your blog that calls machine translation API.</p>
+<p>The address of this project: <a target="_blank" rel="noopener" href="https://github.com/RandomNamer/MarkdownTranslator">https://github.com/RandomNamer/MarkdownTranslator</a></p>
+<img src="image-20211012150904830.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20211012150904830" style="zoom:50%;" />
+
+<h1 id="development-process"><a href="#development-process" class="headerlink" title="development process"></a>development process</h1><p>In order to ensure the accuracy and reliability of the translation, I chose the Google Translate API here. Of course, due to the special network environment in mainland China, there are still a lot of troubles in the process of using Google Translate, although I don’t know when I just started developing it.</p>
+<h2 id="Experiment-with-the-Markdown-format-that-Google-Translate-will-erase"><a href="#Experiment-with-the-Markdown-format-that-Google-Translate-will-erase" class="headerlink" title="Experiment with the Markdown format that Google Translate will erase"></a>Experiment with the Markdown format that Google Translate will erase</h2><p>Here I only tested some commonly used markdown format translations, and support for other special formats will continue to be developed.</p>
+<ul>
+<li>List item: the space between “-“ and the text will be removed</li>
+<li>Code block: “`” will be removed from the code block</li>
+<li>Inline code: will not change, but the content may be changed</li>
+<li>The space between “#” and the text will be removed</li>
+<li>Numbered list items: won’t be changed</li>
+<li>Italic and bold: will not be destroyed</li>
+<li>Link: Will not be broken</li>
+</ul>
+<h2 id="Get-Google-Translate-API"><a href="#Get-Google-Translate-API" class="headerlink" title="Get Google Translate API"></a>Get Google Translate API</h2><p>Google Translate is a paid service in Google Cloud. Although Google Translate comes with a $300 trial quota when registering, which is sufficient for personal translation purposes, it is not convenient to register a Google Cloud account with personal information and an international credit card. Here is an API used by the client of Google Translate: <code>https://translate.google.cn/translate_a/single</code>, the important query params mainly include:</p>
+<ul>
+<li>sl:</li>
+<li>tl:</li>
+<li>q:</li>
+<li>tk:<br>Here is an implementation of Token calculation:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">token</span>(<span class="hljs-params">a</span>) </span>&#123;<br>    <span class="hljs-keyword">var</span> k = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">var</span> b = <span class="hljs-number">406644</span>;<br>    <span class="hljs-keyword">var</span> b1 = <span class="hljs-number">3293161072</span>;<br> <br>    <span class="hljs-keyword">var</span> jd = <span class="hljs-string">&quot;.&quot;</span>;<br>    <span class="hljs-keyword">var</span> sb = <span class="hljs-string">&quot;+-a^+6&quot;</span>;<br>    <span class="hljs-keyword">var</span> Zb = <span class="hljs-string">&quot;+-3^+b+-f&quot;</span>;<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> e = [], f = <span class="hljs-number">0</span>, g = <span class="hljs-number">0</span>; g &lt; a.length; g++) &#123;<br>        <span class="hljs-keyword">var</span> m = a.charCodeAt(g);<br>        <span class="hljs-number">128</span> &gt; m ? e[f++] = m: (<span class="hljs-number">2048</span> &gt; m ? e[f++] = m &gt;&gt; <span class="hljs-number">6</span> | <span class="hljs-number">192</span> : (<span class="hljs-number">55296</span> == (m &amp; <span class="hljs-number">64512</span>) &amp;&amp; g + <span class="hljs-number">1</span> &lt; a.length &amp;&amp; <span class="hljs-number">56320</span> == (a.charCodeAt(g + <span class="hljs-number">1</span>) &amp; <span class="hljs-number">64512</span>) ? (m = <span class="hljs-number">65536</span> + ((m &amp; <span class="hljs-number">1023</span>) &lt;&lt; <span class="hljs-number">10</span>) + (a.charCodeAt(++g) &amp; <span class="hljs-number">1023</span>), e[f++] = m &gt;&gt; <span class="hljs-number">18</span> | <span class="hljs-number">240</span>, e[f++] = m &gt;&gt; <span class="hljs-number">12</span> &amp; <span class="hljs-number">63</span> | <span class="hljs-number">128</span>) : e[f++] = m &gt;&gt; <span class="hljs-number">12</span> | <span class="hljs-number">224</span>, e[f++] = m &gt;&gt; <span class="hljs-number">6</span> &amp; <span class="hljs-number">63</span> | <span class="hljs-number">128</span>), e[f++] = m &amp; <span class="hljs-number">63</span> | <span class="hljs-number">128</span>)<br>    &#125;<br>    a = b;<br>    <span class="hljs-keyword">for</span> (f = <span class="hljs-number">0</span>; f &lt; e.length; f++) a += e[f],<br>        a = RL(a, sb);<br>    a = RL(a, Zb);<br>    a ^= b1 || <span class="hljs-number">0</span>;<br>    <span class="hljs-number">0</span> &gt; a &amp;&amp; (a = (a &amp; <span class="hljs-number">2147483647</span>) + <span class="hljs-number">2147483648</span>);<br>    a %= <span class="hljs-number">1E6</span>;<br>    <span class="hljs-keyword">return</span> a.toString() + jd + (a ^ b)<br>&#125;;<br> <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RL</span>(<span class="hljs-params">a, b</span>) </span>&#123;<br>    <span class="hljs-keyword">var</span> t = <span class="hljs-string">&quot;a&quot;</span>;<br>    <span class="hljs-keyword">var</span> Yb = <span class="hljs-string">&quot;+&quot;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> c = <span class="hljs-number">0</span>; c &lt; b.length - <span class="hljs-number">2</span>; c += <span class="hljs-number">3</span>) &#123;<br>        <span class="hljs-keyword">var</span> d = b.charAt(c + <span class="hljs-number">2</span>),<br>            d = d &gt;= t ? d.charCodeAt(<span class="hljs-number">0</span>) - <span class="hljs-number">87</span> : <span class="hljs-built_in">Number</span>(d),<br>            d = b.charAt(c + <span class="hljs-number">1</span>) == Yb ? a &gt;&gt;&gt; d: a &lt;&lt; d;<br>        a = b.charAt(c) == Yb ? a + d &amp; <span class="hljs-number">4294967295</span> : a ^ d<br>    &#125;<br>    <span class="hljs-keyword">return</span> a<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Access-through-proxy"><a href="#Access-through-proxy" class="headerlink" title="Access through proxy"></a>Access through proxy</h3><p><strong>Notice!</strong> Node will not use the system proxy by default, which will cause network requests from Node to be blocked inside the wall even if the machine can already access the off-wall website through the proxy. At this time, we need to configure a proxy for Node before we can use Google Translate API normally. But for the network request library Axios that many people like to use, simply using the built-in proxy may not work for https sites like Google Translate. The basic solutions are:</p>
+<ul>
+<li>Use ProxyAgent, such as <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/tunnel">tunnel</a>,</li>
+<li>Use modified version of Axios, <code>axios-https-proxy-fix</code></li>
+<li>Use <code>request</code></li>
+</ul>
+<p>A ready-made Google Translate API package is <code>translate-google-api</code>, which can be installed directly via <code>npm install translate-google-api</code>. We can see the code in it, basically using axios to initiate a request using the API just now, but due to the bug that axios has on the https proxy, this module is basically unavailable in mainland China.</p>
+<h3 id="Restrictions"><a href="#Restrictions" class="headerlink" title="Restrictions"></a>Restrictions</h3><p>This API is provided for the client of Google Translate, so it comes with anti-crawler settings. Generally speaking, one IP can completely translate an article, but the next one needs to switch to the next proxy address, otherwise error 429 will be returned.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/i18n/">i18n</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/Node-js/">Node.js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    This article uses <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="nofollow noopener noopener">CC BY-SA 4.0 License</a>. You may need to give appropriate credit, provide a link to the license, and indicate if changes were made when referencing this article.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlog/2021/09/30/blog-with-hexo-and-gh-pages/">
+                        <span class="hidden-mobile">Build a static blog with Hexo and Github Pages</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlog/js/events.js" ></script>
+<script  src="/StaticBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlog/js/boot.js" ></script>
+
+
+</body>
+</html>
