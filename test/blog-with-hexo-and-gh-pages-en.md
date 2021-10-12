@@ -8,58 +8,58 @@ excerpt: 简简单单搭一个Hexo博客，以及用Github Pages免费托管它
 
 # Build a static blog with Hexo and Github Pages
 
-个人博客曾经具有很高的门槛，因此在世纪之初时国内涌现了一大批在线博客平台。曾经搭建一个个人博客需要自己编写后端和前端，搞定域名解析服务，并付出不小数目的资金来维持它以合理的速度运行。在2021年，如果只是想体验属于自己的博客，则完全不需要这么做。对于纯静态展示用途（事实上这也是博客最基本、最重要的用途）而言，只需要一个（好看的）静态网页和一个托管平台即可。Github Pages就是这样一个托管平台，它依托于Github的Repository，使用简便，且完全不收费。我们可以直接编写静态前端，用Git推送到远端，就可以自动完成部署。Hexo就是这样一个静态博客生成工具，用它可以更简便地创建静态博客。两者结合就可以在数分钟内完成自己第一个博客的搭建。
+Personal blogs once had a high threshold, so a large number of online blog platforms emerged in the country at the beginning of the century. Once building a personal blog, you need to write your own back-end and front-end, get the domain name resolution service, and pay a lot of money to keep it running at a reasonable speed. In 2021, if you just want to experience your own blog, you don't need to do this at all. For purely static display purposes (in fact, this is also the most basic and important use of blogs), only a (good-looking) static web page and a hosting platform are required. Github Pages is such a hosting platform. It relies on Github's Repository, which is easy to use and free of charge. We can write a static front-end directly, push it to the remote end with Git, and then automatically complete the deployment. Hexo is such a static blog generation tool, which can be used to create static blogs more easily. Combine the two to complete your first blog in a few minutes.
 
 ## Set up GitHub Pages
 
-在GitHub中新建一个Repository，然后在设置中开启Github Pages托管。
+Create a new Repository in GitHub, and then enable Github Pages hosting in the settings.
 
 <img src="image-20210923153307744.png"  style="zoom:50%;" />
 
-使用Theme-Chooser，可以生成一个缺省的页面，内容由一个Markdown文档填充。这个markdown文档也是支持嵌入HTML链接的。
+Using Theme-Chooser, you can generate a default page with the content filled in by a Markdown document. This markdown document also supports embedding HTML links.
 
 <img src="image-20210923153437095.png"  style="zoom:50%;" />
 
-在简单调整之后，我们可以看到一个可以正常显示的静态网页，说明GitHub Pages已经创建成功。
+After simple adjustments, we can see a static web page that can be displayed normally, indicating that GitHub Pages has been created successfully.
 
 <img src="image-20210923153532574.png"  style="zoom:50%;" />
 
 ## Use Hexo to generate static blogs
 
-Hexo是一个在Node.js上运行的工具，为了使用它，首先要确保已经安装Node.
+Hexo is a tool that runs on Node.js. In order to use it, you must first make sure that Node has been installed.
 
 <img src="image-20210923153738209.png" style="zoom:50%;" />
 
-`npm`是Node的包管理工具，我们可以用它安装Hexo。（在macOS上，如果是第一次安装Node，npm可能缺乏文件写权限，可以使用`sudo chown -R $USER /usr/local/lib/node_modules` 为其添加权限解决。）
+`npm` is Node's package management tool, we can use it to install Hexo. (On macOS, if it is the first time to install Node, npm may lack file write permissions. You can use `sudo chown -R $USER /usr/local/lib/node_modules` to add permissions to solve it.)
 
-一切顺利的话，我们就可以使用`npm install -g hexo-cli`安装Hexo了。
+If everything goes well, we can install Hexo using `npm install -g hexo-cli`.
 
-安装完成后，我们就有了hexo的命令行工具，通过`hexo init`可以初始化一个博客模版：
+After the installation is complete, we have the hexo command line tool, and a blog template can be initialized through `hexo init`:
 
 <img src="image-20210923160421280.png"  style="zoom:50%;" />
 
-要将其编译为可用的html网页，执行`hexo generate `即可。要在浏览器预览，可以使用`hexo server`, 在本地开启一个服务器进行预览。
+To compile it into a usable html page, execute `hexo generate`. To preview in the browser, you can use `hexo server` to open a server locally for preview.
 
 <img src="image-20210923161332399.png"  style="zoom:50%;" />
 
 ## deploy
 
-一个简单的想法是，每次都在本地手动构建博客，然后推送到GitHub完成更新。但是我们需要将构建后的网页送往Github Pages所用的分支，而源码留在另一个分支。
+A simple idea is to manually build the blog locally every time, and then push to GitHub to complete the update. But we need to send the constructed web page to the branch used by Github Pages, while the source code stays in another branch.
 
-这里有两种推荐的操作。
+There are two recommended actions.
 
-- 得益于GitHub可以集成的CI功能，我们不必每次都手动构建，而是**让CI系统帮助我们构建并发布到GitHub Pages绑定的分支**。按照官网的教程：https://hexo.io/zh-cn/docs/github-pages，我们需要配置一个相关的Travis CI服务。注意，Travis CI只对开源Repo有效。
-- 所以如果想使用私有Repo托管的话，就只能使用`hexo-deployer-cli`进行部署。Hexo Deployer只需要在`_config.yml`里进行[简单配置](https://hexo.io/docs/one-command-deployment# After Git), you only need to use `hexo clean && hexo deploy` to complete the deployment each time.
+- Thanks to the CI function that GitHub can integrate, we don’t have to build manually every time, but ** let the CI system help us build and publish to GitHub
+# After Git), you only need to use `hexo clean && hexo deploy` to complete the deployment each time.
 
 
 
 ## Workflow
 
-这里简单介绍下如何配置Deployer和在本地撰写并发布的工作流程
+Here is a brief introduction on how to configure Deployer and the workflow of writing and publishing locally
 
 ### Deployer configuration and use
 
-要使用Deployer，只需要在`_config.yml`中配置四个项目即可，下面是一个示例配置：
+To use Deployer, you only need to configure four items in `_config.yml`, the following is an example configuration:
 
 ```yaml
 deploy:
@@ -69,30 +69,30 @@ deploy:
   message: Update pages with local changes on {{ now('YYYY-MM-DD')}}
 ```
 
-只需要填入正确的repo地址，Github Pages分支和commit message即可。
+Just fill in the correct repo address, Github Pages branch and commit message.
 
-deployer的操作就是先进行一次生成，再将生成的文件提交到指定的分支，commit message就是之前配置的`message`。
+The operation of the deployer is to generate it once, and then submit the generated file to the specified branch. The commit message is the previously configured `message`.
 
-在部署时，只需要执行`hexo clean && hexo d`即可将本地的网站与远端同步
+During deployment, you only need to execute `hexo clean && hexo d` to synchronize the local website with the remote
 
 ### Load resources correctly
 
-要让网站能正确地工作，还需要最后一步，那就是在`_config.yml`中配置网站的URL。这个URL决定了生成页面中所有链接的具体指向和加载CSS、JS和其他资源文件的路径。如果加载不当，恐怕就会是这样：
+For the website to work correctly, the last step is needed, which is to configure the website URL in `_config.yml`. This URL determines the specific path for all links in the generated page to point to and load CSS, JS and other resource files. If it is not loaded properly, I am afraid it will be like this:
 
 <img src="image-20210930125831154.png"  style="zoom:50%;" />
 
-正确配置之后，再执行一次（生成和）部署，正确的网页就可以在GitHub Pages上查看了：
+After the correct configuration, perform another (generation and) deployment, and the correct web page can be viewed on GitHub Pages:
 
 ```yaml
 # URL
-## Set your site url here. For example, if you use GitHub Page, set url as'https://username.github.io/project'
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://randomnamer.github.io/
 root: /StaticBlogTest/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing'.html' from permalinks
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 ```
 
 <img src="image-20210930130025608.png"  style="zoom:50%;" />
@@ -101,9 +101,9 @@ pretty_urls:
 
 #### Front Matters
 
-Hexo使用markdown写作，或者说，使用Markdown的语法进行写作。Hexo有一种被称为[Front Matter](https://hexo.io/zh-cn/docs/front-matter)的语法，用于对每篇文章进行一定程度上的自定义，如指定网页名称，嵌入封面图，指定文章作者和tag等.
+Hexo uses markdown to write, or in other words, uses Markdown's grammar to write. Hexo has a syntax called [Front Matter](https://hexo.io/zh-cn/docs/front-matter), which is used to customize each article to a certain extent, such as specifying the name of the page , Embed the cover image, specify the author and tag of the article, etc.
 
-Front Matter可以使用yaml撰写，也可以使用JSON撰写：
+Front Matter can be written in yaml or JSON:
 
 ```yaml
 ---
@@ -121,15 +121,15 @@ date: 2013/7/13 20:46:25
 
 #### Integration with HTML
 
-如果用过Typora的话，就会对其中嵌入HTML标签的功能印象深刻，他可以让Markdown文档呈现出不属于Markdown规范的丰富样式，甚至可以通过iframe嵌入其他网页的内容。
+If you have used Typora, you will be impressed by the function of embedding HTML tags. It can make Markdown documents show rich styles that are not part of the Markdown specification, and can even embed the content of other web pages through iframes.
 
 <img src="image-20210930143453754.png" style="zoom:50%;" />
 
-Hexo也完全支持内嵌HTML，这样文章不仅可以有着丰富的自定义能力，也可以与Typora完全兼容。
+Hexo also fully supports embedded HTML, so that the article can not only have rich customization capabilities, but also be fully compatible with Typora.
 
 #### Local writing practice
 
-Hexo-cli提供了创建新文章的方式：
+Hexo-cli provides a way to create new articles:
 
 ```shell
 ➜  StaticBlogTest git:(develop) ✗ hexo new ArticleTest
@@ -137,24 +137,30 @@ INFO  Validating config
 INFO  Created: ~/Documents/GitHub/StaticBlogTest/source/_posts/ArticleTest.md
 ```
 
-默认状态下，它只会在指定文件夹下创建一个markdown文件。我们可以用任何markdown编辑器进行撰写，也可以将已经撰写的markdown文件拷贝到`source/_posts`路径下，形成一篇新的文章。
+By default, it will only create a markdown file in the specified folder. We can use any markdown editor to write, or copy the markdown file that has been written to the `source/_posts` path to form a new post.
 
-在撰写完成之后，可以用`hexo clean && hexo s`进行预览
+After writing, you can use `hexo clean && hexo s` to preview
 
 ## Use theme
 
-前端的魅力在于更便捷更自由地设计自己想要的外观，Hexo也有着丰富的自定义主题，并且也可以自己开发定制主题。
+The charm of the front-end is that it is more convenient and free to design the appearance you want. Hexo also has a wealth of custom themes, and you can also develop your own custom themes.
 
-在Github上和Hexo官网上都有大量的主题
+There are a large number of topics on Github and Hexo official website
 
 <img src="image-20210930130535951.png" style="zoom:33%;" />
 
-只需要主题下载到`themes`文件夹下，在`_config.yml`中引用这个主题的名字（文件夹名）就可以使用这个主题。不同的主题提供了丰富的配置项目，可以对其进行进一步定制。同时，所有的主题也都是使用标准前端技术构建的，也可以自己对主题进行修改和定制。
+You only need to download the theme to the `themes` folder and quote the name of the theme (folder name) in `_config.yml` to use this theme. Different themes provide a wealth of configuration items, which can be further customized. At the same time, all themes are also built using standard front-end technology, and you can also modify and customize the themes yourself.
 
-比如我这里使用的主题[Fluid](https://github.com/fluid-dev/hexo-theme-fluid)，其文章页的目录就只能居右，通过对它的模版进行修改，可以自定义布局，在左边显示目录，同时使正文不强制居中(space-evenly)。
+For example, for the theme [Fluid](https://github.com/fluid-dev/hexo-theme-fluid) I use here, the content of the article page can only be placed on the right. By modifying its template, you can Define the layout, display the table of contents on the left, and make the text not forced to be centered (space-evenly).
 
 ## Summarize
-几个小时下来，Hexo这个静态博客生成框架还是给了我不少惊喜，首先就是文章撰写十分容易，可以直接在熟悉的Typora上完成，Front—Matter也让我可以实现对文章样式的控制。几年来全球各地开发者贡献的的模版和插件也数不胜数，很多都让人眼前一亮。
+After a few hours, Hexo, a static blog generation framework, still gave me a lot of surprises. First of all, article writing is very easy. It can be done directly on the familiar Typora. Front-Matter also allows me to control the style of the article. In the past few years, there have been countless templates and plug-ins contributed by developers from all over the world, and many of them are eye-catching.
+
+## test
+List item
+- List 1
+- List 2
+- Hahaha
 
 
 
