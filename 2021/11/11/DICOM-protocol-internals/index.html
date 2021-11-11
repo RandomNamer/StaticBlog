@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://randomnamer.github.io/2021/11/11/DICOM-protocol-internals/image-20211013234755122.png">
 <meta property="og:image" content="https://randomnamer.github.io/2021/11/11/DICOM-protocol-internals/image-20211013195701896.png">
 <meta property="article:published_time" content="2021-11-11T13:14:06.000Z">
-<meta property="article:modified_time" content="2021-11-11T13:35:56.936Z">
+<meta property="article:modified_time" content="2021-11-11T13:46:10.330Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="DICOM">
 <meta property="article:tag" content="Biomedical Engineering">
@@ -266,7 +266,9 @@
 <p>本次在macOS系统上构建DCMTK，在其它类UNIX系统下的构建应该也有着一致的步骤。DCMTK源码中已经写好了对应各种系统的<code>CMakelist</code>, 只需要执行<code>cmake</code>即可完成配置。然后在源文件路径下<code>make</code>即可构建整个项目，构建成功后会输出对应的静态库文件和二进制可执行文件：</p>
 <img src="image-20210930193320612.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20210930193320612" style="zoom:33%;" />
 
+
 <img src="image-20210930193338568.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20210930193338568" style="zoom:33%;" />
+
 
 <p>输出有一组命令行工具和对应的静态链接库，满足了使用者通过系统命令调用和直接链接调用的需求，非常方便二次开发。同时，我们也可以直接使用生成的命令行工具执行各种DICOM操作，例如，我们可以用其中的<code>storescu</code>充当modality，向服务端发送DICOM文件。发送的格式为</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">storescu [options] peer port dcmfile-in...<br></code></pre></td></tr></table></figure>
