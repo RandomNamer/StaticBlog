@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlog/img/favicon.png">
+  <link rel="icon" href="/StaticBlog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="看大妈之家的客户端早就不爽了，不如欺负下这个没什么混淆的APK，把他们的API拿来自己玩">
+  <meta name="author" content="Zeyu Zhang">
+  <meta name="keywords" content="">
+  <meta name="description" content="看大妈之家的客户端早就不爽了，不如欺负下这个没什么混淆的APK，把他们的API拿来自己玩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泡面盖拯救计划：在世界读书日用JS制作电子书">
+<meta property="og:url" content="https://randomnamer.github.io/2022/04/24/dmzjReader/index.html">
+<meta property="og:site_name" content="A Random Blog">
+<meta property="og:description" content="看大妈之家的客户端早就不爽了，不如欺负下这个没什么混淆的APK，把他们的API拿来自己玩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174404514.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424161305785.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174218724.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424185604656.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424185144983.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425000148505.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425120102467.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425120229409.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425134554616.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425162559469.png">
+<meta property="article:published_time" content="2022-04-24T06:44:06.000Z">
+<meta property="article:modified_time" content="2022-04-25T11:12:20.259Z">
+<meta property="article:author" content="Zeyu Zhang">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174404514.png">
+  
+  <title>泡面盖拯救计划：在世界读书日用JS制作电子书 - A Random Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlog/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlog/css/layout.css">
+<link rel="stylesheet" href="/StaticBlog/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlog/local-search.xml"};
+  </script>
+  <script  src="/StaticBlog/js/utils.js" ></script>
+  <script  src="/StaticBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlog/">
+      <strong>RandomNamer&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/">
+                <i class="iconfont icon-in-alt"></i>
+                English
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="泡面盖拯救计划：在世界读书日用JS制作电子书">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-24 14:44" pubdate>
+        2022年4月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">泡面盖拯救计划：在世界读书日用JS制作电子书</h1>
+            
+             
+            <div class="markdown-body">
+              <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p>看大妈之家的客户端早就不爽了，不如欺负下这个没什么混淆的APK，把他们的API拿来自己玩, 借着复活我七年高龄的Kindle的想法，这次就来抓一个动漫之家轻小说源，做成电子书给它看（为啥不抓漫画呢？别问问就是今天世界读书日）。虽然动漫之家有不少汉化的轻小说资源，其移动端阅读体验却不敢恭维，而Web端满屏的广告也基本断绝了用Kindle那个又慢又卡的浏览器阅读的可能。原本的想法是在本地托管一个网页，通过DMZJ的API做出一个适合Kindle浏览器的静态阅读页（出于性能考虑，最好直接禁用Kindle浏览器的JavaScript）。于是我很快就想到，既然API都有了，不如直接扒下来做成电子书再发过去，岂不美哉？Anyway，万事开头难，只要拿到API，剩下的客户端、Web还是直接存本地都可以信手拈来。当然以我在Windows UWP端见证的几版DMZJ客户端消亡史来看，他们的API还是变动频繁的，不如直接存本地划算。</p>
+<p>如前所述，至少在几年前，DMZJ的API就已经被人抓取了，因此出现了众多的基于第三方API的客户端，在GitHub上仍有2021年时可用的API。但不幸的是，现在抓包的结果表明之前的API已经过时，至少在漫画/小说章节部分，DMZJ的API已经引入了新的加密。<img src="image-20220424174404514.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220424174404514" style="zoom:50%;" /></p>
+<img src="image-20220424161305785.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220424161305785" style="zoom: 50%;" />
+
+<p>于是祭出<code>jadx</code>，直接反编译看它的小说详情页<code>NovelInstructionActivity</code>源码。我们可以看到小说的基本信息接口已经是加密的（拿到数据直接一个<code>postDelayed</code>加载到UI上真的大丈夫？）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> z)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.mNovelProtocol.setPathParam(<span class="hljs-keyword">this</span>.intent_extra_nid);<br>        AppBeanFunctionUtils.setCommentRequestException(getActivity(), <span class="hljs-keyword">this</span>.mNovelProtocol);<br>        MyNetClient.getInstance().getNovel(<span class="hljs-keyword">this</span>.intent_extra_nid, <span class="hljs-keyword">new</span> MyCallBack1(getActivity(), <span class="hljs-keyword">new</span> MyCallBack1.B() &#123;<br>            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelInstructionActivity.AnonymousClass1 */</span><br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.net.MyCallBack1.B</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveData</span><span class="hljs-params">(String str)</span> </span>&#123;<br>                NovelInstructionActivity.<span class="hljs-keyword">this</span>.scrollview.onRefreshComplete();<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-keyword">byte</span>[] decryptWithPrivateKeyBlock = RSAUtil.decryptWithPrivateKeyBlock(str);<br>                    JsonFormat jsonFormat = <span class="hljs-keyword">new</span> JsonFormat();<br>                    Novel.NovelInfoResponse parseFrom = Novel.NovelInfoResponse.parseFrom(decryptWithPrivateKeyBlock);<br>                    <span class="hljs-keyword">if</span> (parseFrom.getErrno() == <span class="hljs-number">0</span>) &#123;<br>                        <span class="hljs-keyword">final</span> String printToString = jsonFormat.printToString((Message) parseFrom.getDataOrBuilder());<br>                        NovelInstructionActivity.<span class="hljs-keyword">this</span>.getDefaultHandler().postDelayed(<span class="hljs-keyword">new</span> Runnable() &#123;<br>                            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelInstructionActivity.AnonymousClass1.AnonymousClass1 */</span><br><br>                            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                                NovelInstructionActivity.<span class="hljs-keyword">this</span>.refreshBasicInfos(printToString);<br>                            &#125;<br>                        &#125;, <span class="hljs-number">500</span>);<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        UIUtils.show(NovelInstructionActivity.<span class="hljs-keyword">this</span>.getActivity(), parseFrom.getErrmsg());<br>                    &#125;<br>                    NovelInstructionActivity.<span class="hljs-keyword">this</span>.ltUnionADPlatform = BrowseAdHelper.setAd(NovelInstructionActivity.<span class="hljs-keyword">this</span>.getActivity(), NovelInstructionActivity.<span class="hljs-keyword">this</span>.layout_ad_layout, <span class="hljs-number">2</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.net.MyCallBack1.B</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveError</span><span class="hljs-params">(String str, <span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>                NovelInstructionActivity.<span class="hljs-keyword">this</span>.scrollview.onRefreshComplete();<br>            &#125;<br>        &#125;));<br></code></pre></td></tr></table></figure>
+
+<p>然后我们看它的<code>RSAUtil</code>，私钥就明文放着，你懂得。</p>
+<p>简单调用一下，发现之前抓取的请求能被正常解码，内容应该是protobuf。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">object</span> DMZJDecrypter &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">run</span><span class="hljs-params">(ciphertext: <span class="hljs-type">String</span>)</span></span>&#123;<br>        println(<br>            String(RSAUtils.decryptWithPrivateKeyBlock(ciphertext))<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="image-20220424174218724.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220424174218724"></p>
+<p>使用<code>protoc --decode_raw &lt; ~/Downloads/dmzj_resp.bin &gt; ~/Downloads/dmzj_resp.txt</code>解码，可以看到如下结构：</p>
+<img src="image-20220424185604656.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220424185604656" style="zoom:50%;" />
+
+<p>但我们还需要找到这些字段的含义，在apk中可以看到三个由<code>protoc</code>生成的ProtoBuf实体类：</p>
+<img src="image-20220424185144983.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220424185144983" style="zoom:50%;" />
+
+<p>比如，Novel类型对应着NovelChapter、NovelInfo、NovelVolume三种对象，其定义类似：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">NovelInfo</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.memoizedIsInitialized = -<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">this</span>.novelId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.name_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.zone_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.status_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateVolumeName_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateChapterName_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateVolumeId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateChapterId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateTime_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.cover_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.hotHits_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.introduction_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.types_ = LazyStringArrayList.EMPTY;<br>            <span class="hljs-keyword">this</span>.authors_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.firstLetter_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.subscribeNum_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.redisUpdateTime_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.volume_ = Collections.emptyList();<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<p>显然这与protobuf的结构对应。至此我们终于可以使用新版的DMZJ API了。</p>
+<p>以下是本人总结出的DMZJ轻小说的Protobuf IDL示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs idl">syntax = &quot;proto2&quot;;<br><br>package novel;<br><br>message NovelChapterDetail &#123;<br>    required int32 chapterId = 1;<br>    required string chapterName = 2;<br>    required int32 chapterOrder = 3; <br>&#125;<br><br>message NovelVolumeDetail &#123;<br>    required int32 volumeId = 1;<br>    required string volumeName = 2;<br>    required int32 volumeOrder = 3;<br>    repeated NovelChapterDetail chapters = 4;<br>&#125;<br><br>message NovelChapterResponse &#123;<br>    optional int32 errno = 1;<br>    optional string errmsg = 2;<br>    repeated NovelVolumeDetail data = 3;<br>&#125;<br><br>message NovelInfoResponse &#123;<br>    optional int32 errno = 1;<br>    optional string errmsg = 2;<br>    repeated NovelInfo data = 3;<br>&#125;<br><br><br>message NovelVolume &#123;<br>    required int32 volumeId = 1;<br>    required int32 novelId = 2;<br>    required string volumeName = 3;<br>    required int32 volumeOrder = 4;<br>    required uint64 addtime = 5;<br>    required uint32 sumChapters = 6;<br>&#125;<br><br>message NovelInfo &#123;<br>    required int32 novelId = 1;<br>    required string name = 2;<br>    required string zone = 3;<br>    required string status = 4;<br>    required string lastUpdateVolumeName = 5 ;<br>    required string lastUpdateChapterName = 6;<br>    required int32 lastUpdateVolumeId = 7;<br>    required int32 lastUpdateChapterId = 8;<br>    required uint64 lastUpdateTime = 9;<br>    required string cover = 10;<br>    required int32 hotHits = 11;<br>    required string introduction = 12;<br>    repeated string types = 13;<br>    required string authors = 14;<br>    required string firstLetter = 15;<br>    required int32 subscribeNum = 16;<br>    optional uint64 redisUpdateTime = 17; <br>    repeated NovelVolume volume = 18;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>简单用<code>protobuf.js</code>解码后就可以得到我们想要的目录：</p>
+<p><img src="image-20220425000148505.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220425000148505"></p>
+<p>当然还有最后一步即获取对应章节的文本，这个接口需要用上一步得到的<code>volumeId</code>和<code>chapterId</code>与两个query <code>t</code>和<code>k</code>即可访问:  <code>http://jurisdiction.muwai.com/lnovel/$&#123;volumeId&#125;_$&#123;chapterId&#125;.txt</code>。</p>
+<img src="image-20220425120102467.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220425120102467" style="zoom:50%;" />
+
+<p>顾名思义，<code>t</code>就是当前的时间戳，而<code>k</code>应该是根据时间戳生成的随机ID，更改其中任何一个，或者不上传都会被403。</p>
+<img src="image-20220425120229409.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220425120229409" style="zoom:50%;" />
+
+<p>反编译<code>NovelBrowsActivity</code>，可以看到章节刷新的逻辑：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> NovelDescription.Chapter chapter = <span class="hljs-keyword">this</span>.novelChapters.get(z ? i - <span class="hljs-number">1</span> : i + <span class="hljs-number">1</span>);<br>        loadChapterNovel(<span class="hljs-keyword">null</span>, chapter.getChapter_name(), <span class="hljs-keyword">this</span>.intent_extra_nid, chapter.getVolume_id(), chapter.getChapter_id(), <span class="hljs-keyword">new</span> OnCommenCompleteListener() &#123;<br>            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelBrowseActivity.AnonymousClass8 */</span><br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.ui.NovelBrowseActivity.OnCommenCompleteListener</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">(Bundle bundle)</span> </span>&#123;<br>                ...<br>            &#125;<br>        &#125;, <span class="hljs-keyword">false</span>, z);<br></code></pre></td></tr></table></figure>
+
+<p>在<code>loadChapterNovel</code>方法中，我们可以看到拼接出最终URL的方法<code>MyspUtils</code>中, 这个只是个拿SahredPreference的工具，会从SahredPreference中拿对应URL的缓存地址，然后从本地加载：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadChapterNovel</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ReadHistory4Novel readHistory4Novel, String str, String str2, String str3, String str4, <span class="hljs-keyword">final</span> OnCommenCompleteListener onCommenCompleteListener, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> z, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> z2)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        String str5 = <span class="hljs-keyword">new</span> URLPathMaker(<span class="hljs-keyword">this</span>.ctx, URLPathMaker.URL_ENUM.HttpUrlTypeNovelDownLoad).get_url(URLPathMaker.URL_ENUM.HttpUrlTypeNovelDownLoad, str3 + <span class="hljs-string">&quot;_&quot;</span> + str4);<br>        KLog.log(<span class="hljs-string">&quot;小说地址&quot;</span>, str5);<br>        String str6 = MyspUtils.getStr(<span class="hljs-keyword">this</span>.ctx, str5);<br>        KLog.log(<span class="hljs-string">&quot;str&quot;</span>, str6);<br>        <span class="hljs-keyword">if</span> (ZzTool.isNoEmpty(str6) &amp;&amp; onCommenCompleteListener != <span class="hljs-keyword">null</span>) &#123;...&#125;<br>  			 <span class="hljs-keyword">this</span>.mNovelHelper.getLocalLocalFile(getActivity(), str2, str3, str4, <span class="hljs-keyword">new</span> NovelHelper.OnLoadCompleteListener() &#123;<br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.novel.NovelHelper.OnLoadCompleteListener</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">(String str, String str2)</span> </span>&#123;...&#125;<br>         &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在没有命中缓存之后，会调用<code>NovelHelper.getLocalLocalFile()</code>方法（这个方法真的会执行下载，但名字就…编码习惯真好）。所以前面做出来的URL只是用来查询缓存用的，并未在这个方法中触发下载行为。</p>
+<p>在<code>NovelHelper</code>中，我们终于看到计算两个query的部分，key即是一个混合了时间戳的MD5编码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">goWebDownLoad</span><span class="hljs-params">(<span class="hljs-keyword">final</span> StepActivity stepActivity, String str, <span class="hljs-keyword">final</span> String str2, <span class="hljs-keyword">final</span> OnLoadCompleteListener onLoadCompleteListener)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!AppUtils.RELEASE) &#123;<br>            Log.d(<span class="hljs-string">&quot;novel_goWebDownLoad&quot;</span>, <span class="hljs-string">&quot;webpath = &quot;</span> + str);<br>        &#125;<br>        <span class="hljs-keyword">long</span> currentTimeMillis = System.currentTimeMillis() / <span class="hljs-number">1000</span>;<br>        String replace = str.replace(Api.NOVEL_URL, <span class="hljs-string">&quot;&quot;</span>);<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        sb.append(str);<br>        sb.append(<span class="hljs-string">&quot;?t=&quot;</span>);<br>        sb.append(currentTimeMillis);<br>        sb.append(<span class="hljs-string">&quot;&amp;k=&quot;</span>);<br>        sb.append(MD5.MD5Encode(Api.NOVEL_KEY + replace + currentTimeMillis).toLowerCase());<br>        String sb2 = sb.toString();<br>        KLog.log(<span class="hljs-string">&quot;小说地址====&quot;</span>, sb2);<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在我们得到可用的query了。</p>
+<img src="image-20220425134554616.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220425134554616" style="zoom:50%;" />
+
+<h1 id="制作电子书"><a href="#制作电子书" class="headerlink" title="制作电子书"></a>制作电子书</h1><p>不得不承认，DMZJ最近的API改版确实为获取数据带来了不少麻烦，幸好客户端APK混淆强度很低，通过反编译可以拿到其加密逻辑和接口详情。现在我们具有了完整的数据源，包括书籍信息（作者、封面、地区、tag等）、目录信息（卷、章节）和每章节对应的文本。</p>
+<p>这里我使用了npm模块<code>epub-gen</code>来生成Epub电子书。由于Epub也适用HTML和CSS排版，只需要提供HTML章节文本和外置的CSS即可用以生成Epub。<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/epub-gen">epub-gen</a>的使用相当简单，只需要指定一些选项，将分章节的对象列表作为内容构造出Epub对象即可完成电子书的生成。该模块也可以自动下载url中的图片作为封面。</p>
+<p>从之前获取的数据结构中生成Epub电子书的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> content = []<br>   volumes.forEach(<span class="hljs-function"><span class="hljs-params">vol</span> =&gt;</span> &#123;<br>       content.push(&#123;<br>           <span class="hljs-attr">title</span>: vol.volumeName,<br>           <span class="hljs-attr">data</span>: <span class="hljs-string">&quot;&quot;</span><br>       &#125;)<br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> chap <span class="hljs-keyword">of</span> vol.chapters) &#123;<br>           content.push(&#123;<br>               <span class="hljs-attr">title</span>: chap.chapterName,<br>               <span class="hljs-attr">data</span>: <span class="hljs-string">`&lt;div&gt;<span class="hljs-subst">$&#123;chap.text&#125;</span>/div`</span><br>           &#125;)<br>       &#125;<br>   &#125;)<br><br>   <span class="hljs-keyword">const</span> options = &#123;<br>       <span class="hljs-attr">title</span>: info.name,<br>       <span class="hljs-attr">author</span>: info.authors,<br>       <span class="hljs-attr">cover</span>: info.cover,<br>       <span class="hljs-attr">lang</span>: <span class="hljs-string">&quot;zh&quot;</span>,<br>       <span class="hljs-attr">tocTitle</span>: <span class="hljs-string">&quot;目录&quot;</span>,<br>       <span class="hljs-attr">content</span>: content,<br>       <span class="hljs-attr">verbose</span>: <span class="hljs-literal">true</span><br>   &#125;<br>   <br>   book = <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> Epub(options, path.join(workingDir, <span class="hljs-string">`<span class="hljs-subst">$&#123;info.name&#125;</span>.epub`</span>))<br>   <span class="hljs-keyword">return</span> book<br></code></pre></td></tr></table></figure>
+
+<img src="image-20220425162559469.png" srcset="/StaticBlog/img/loading.gif" lazyload alt="image-20220425162559469" style="zoom:50%;" />
+
+<p>一切都很完美……但<code>epub-gen</code>实际上并不支持多级目录，这意味着，我们得到的卷-章节两级的结构无法被生成到epub中……不过也不是什么大问题，首先有一些workaround，如在卷的<code>data</code>中插入空页，再放入其他章节；其次也可以直接修改<code>epub-gen</code>，这就不在本文讨论范围了。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/Android/">Android</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlog/2021/11/11/DICOM-protocol-internals/">
+                        <span class="hidden-mobile">DICOM网络传输协议解析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlog/js/events.js" ></script>
+<script  src="/StaticBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlog/js/boot.js" ></script>
+
+
+</body>
+</html>
