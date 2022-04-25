@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://randomnamer.github.io/2021/10/09/hexo-i18n-by-article-translator/image-20211012150904830.png">
 <meta property="article:published_time" content="2021-10-09T10:59:37.000Z">
-<meta property="article:modified_time" content="2022-04-25T11:45:50.868Z">
+<meta property="article:modified_time" content="2022-04-25T11:53:58.165Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="i18n">
@@ -275,7 +275,7 @@
 </ul>
 <p>一个现成的Google Translate API封装是<code>translate-google-api</code>， 可以直接通过<code>npm install translate-google-api</code>进行安装。我们可以看到其中的代码，基本上就是用axios使用刚才的API发起请求，但由于axios在https代理上存在的bug，这个模块在中国大陆基本不可用。</p>
 <h3 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h3><p>这个API是为谷歌翻译的客户端提供的，因此自带反爬虫设置。一般而言，使用一个IP可以完整翻译一篇文章，但下一篇就需要切换下一个代理地址了，否则会返回错误429。</p>
-<h3 id="集成到自己的博客"><a href="#集成到自己的博客" class="headerlink" title="集成到自己的博客"></a>集成到自己的博客</h3><p>最简单的做法就是复制一份英文站点，使用shell脚本构建和发布博客，如<code>cd en &amp;&amp; hexo g &amp;&amp; cd .. &amp;&amp; hexo g &amp;&amp; hexo d</code>， 即可同时构建两个站点并部署。</p>
+<h3 id="集成到自己的博客"><a href="#集成到自己的博客" class="headerlink" title="集成到自己的博客"></a>集成到自己的博客</h3><p>最简单的做法就是复制一份英文站点，使用shell脚本构建和发布博客，如<code>cd en &amp;&amp; hexo g &amp;&amp; cd .. &amp;&amp; hexo g  &amp;&amp; cp -R en/public public/en public &amp;&amp; hexo d</code>， 即可同时构建两个站点并部署。</p>
 
             </div>
             <hr>
