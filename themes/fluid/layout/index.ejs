@@ -8,7 +8,7 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 %>
 
 <% page.posts.each(function (post) { %>
-  <div class="row mx-auto index-card">
+  <div class="row mx-auto index-card <%= theme.index.divider_enabled ? "card-height-control" : "" %> ">
     <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
     <% if(index_img) { %>
       <div class="col-12 col-md-4 m-auto index-img">

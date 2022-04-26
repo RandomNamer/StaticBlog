@@ -25,6 +25,13 @@
       "font_class": "arrow-down",
       "unicode": "e7b2",
       "unicode_decimal": 59314
+    },
+    {
+      "icon_id": "13303555",
+      "name": "i18n",
+      "font_class": "in",
+      "unicode": "e669",
+      "unicode_decimal": 58985
     }
   ]
 }

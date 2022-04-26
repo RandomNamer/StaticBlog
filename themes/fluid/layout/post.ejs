@@ -28,6 +28,9 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
                 <% } %>
               </p>
             <% } %>
+            <% if(page.auto_translation) {%> 
+              <p class="note note-primary"> 该页面由<span> <a href="https://github.com/RandomNamer/MarkdownTranslator">机器翻译工具</a></span>翻译。 文本可能与原意不符。</p>
+            <% } %> 
             <div class="markdown-body">
               <%- page.content %>
             </div>

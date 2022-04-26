@@ -1,3 +1,4 @@
+// module.exports = translate
 const marked = require("marked");
 const fs = require("fs");
 // const axiosRequest = require("axios").default;
@@ -20,35 +21,43 @@ const sourceLanguage = "zh-CN";
 const destLanguage = "en";
 const insertAutoTransMark = true
 const autoTranslationMark = "auto_translation: true\n"
+const outputFilenameSuffixEnabled = false
 const isDebug = true;
 
-test();
 
 
-function test() {
-    const articlePath = "./source/_posts/blog-with-hexo-and-gh-pages.md";
-    const newArticlePath = "./test/";
+const articlePath = "./source/_posts/dmzjReader.md";
+const newArticlePath = "./test/";
+translate(articlePath, newArticlePath);
+
+/**
+ * @param  {string} articlePath
+ * @param  {string} newArticlePath
+ * @returns {boolean}
+ */
+function translate(articlePath, newArticlePath) {
     fs.readFile(articlePath, "utf-8", (err, data) => {
         if (err) {
             console.error(err);
-            return;
+            return false;
         }
         if (isDebug) console.log("Read markdown file:\n ", data);
         articleTranslator(data).then((res) => {
             if (isDebug) console.log("translated markdown:\n ", res);
             fs.writeFile(
                 newArticlePath +
-                articlePath.split("/").pop().split(".")[0] +
-                `-${destLanguage}.md`,
+                    articlePath.split("/").pop().split(".")[0] +
+                    (outputFilenameSuffixEnabled ? `-${destLanguage}.md` : ""),
                 res,
                 { flag: "w+" },
                 (err) => {
                     if (err) {
                         console.error(err);
-                        return;
+                        return false;
                     }
                 }
             );
+            return true;
         });
     });
 }

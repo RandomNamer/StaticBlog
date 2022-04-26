@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1632962702660') format('truetype');
+  src: url('iconfont.ttf?t=1634028126807') format('truetype');
 }
 
 .iconfont {
@@ -21,5 +21,9 @@
 
 .icon-arrow-down-alt:before {
   content: "\e7b2";
+}
+
+.icon-in-alt:before {
+  content: "\e669";
 }
 

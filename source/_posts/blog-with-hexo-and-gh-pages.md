@@ -156,11 +156,5 @@ INFO  Created: ~/Documents/GitHub/StaticBlogTest/source/_posts/ArticleTest.md
 ## 总结
 几个小时下来，Hexo这个静态博客生成框架还是给了我不少惊喜，首先就是文章撰写十分容易，可以直接在熟悉的Typora上完成，Front—Matter也让我可以实现对文章样式的控制。几年来全球各地开发者贡献的的模版和插件也数不胜数，很多都让人眼前一亮。
 
-## 测试
-列表项目
-- 列表1
-- 列表2 
-- 哈哈哈
-
 
 
