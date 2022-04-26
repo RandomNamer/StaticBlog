@@ -29,11 +29,11 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
               </p>
             <% } %>
             <% if(page.auto_translation) {%> 
-              <p class="note note-primary"> 该页面由<span style="font-weight: 700;"> <a href="https://github.com/RandomNamer/MarkdownTranslator">机器翻译工具 </a></span>翻译。 文本可能与原意不符。</p>
-            <% } %> 
-            <% if (page.project_link !== undefined ) { %>
-             <p class="note-info"> 该页面有相关的 <span style="font-weight: 700;"><a href="<%- page.project_link %> " >个人项目</a></span> , 您在文章中看到的某些代码片段可能会在其中。 </p>
+              <p class="note note-primary"> This Page is translated by <span style="font-weight: 700;"> <a href="https://github.com/RandomNamer/MarkdownTranslator">automatic translation tool</a></span>. Some text may be inaccurate or ambiguous.</p>
             <% } %>
+            <% if (page.project_link !== undefined ) { %>
+              <p class="note-info"> This article is related to <span style="font-weight: 700;" ><a href="<%- page.project_link %> " >a personal project</a></span>, in which some snippets in this article may be found. </p>
+             <% } %> 
             <div class="markdown-body">
               <%- page.content %>
             </div>

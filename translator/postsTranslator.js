@@ -26,7 +26,7 @@ const isDebug = true;
 
 
 
-const articlePath = "./source/_posts/dmzjReader.md";
+const articlePath = "./source/_posts/DICOM-protocol-internals.md";
 const newArticlePath = "./test/";
 translate(articlePath, newArticlePath);
 

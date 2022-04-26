@@ -3,6 +3,7 @@ title: Markdown文章自动翻译
 date: 2021-10-09 18:59:37
 tags: [Hexo, i18n, JS, Node]
 excerpt: 为了构建英文站点，用JS简简单单撸一个文章自动翻译器。
+project_link: "https://github.com/RandomNamer/MarkdownTranslator"
 ---
 
 在构建个人博客时，我们经常有国际化的需求。技术上，各种博客框架都有完善的i18n解决方案，所以对博主而言最大的挑战在于内容翻译。在人工智能驱动下，机器翻译已经相当完善，满足其他语言读者阅读需求显然是没问题的，所以一个很现实的解决方案就是为自己的博客开发一个调用机器翻译API的自动翻译工具。
