@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlog/en/img/favicon.png">
+  <link rel="icon" href="/StaticBlog/en/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Decomplied DMZJ&#39;s APK, extracted its API, saved these books from their unreadable app.">
+  <meta name="author" content="Zeyu Zhang">
+  <meta name="keywords" content="">
+  <meta name="description" content="Decomplied DMZJ&#39;s APK, extracted its API, saved these books from their unreadable app.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Save My Kindle: Make EPUBs with JS">
+<meta property="og:url" content="https://randomnamer.github.io/2022/04/24/dmzjReader/index.html">
+<meta property="og:site_name" content="A Random Blog">
+<meta property="og:description" content="Decomplied DMZJ&#39;s APK, extracted its API, saved these books from their unreadable app.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174404514.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424161305785.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174218724.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424185604656.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424185144983.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425000148505.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425120102467.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425120229409.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425134554616.png">
+<meta property="og:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220425162559469.png">
+<meta property="article:published_time" content="2022-04-24T06:44:06.000Z">
+<meta property="article:modified_time" content="2022-04-26T08:57:28.470Z">
+<meta property="article:author" content="Zeyu Zhang">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2022/04/24/dmzjReader/image-20220424174404514.png">
+  
+  <title>Save My Kindle: Make EPUBs with JS - A Random Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlog/en/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlog/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlog/en/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlog/en/css/layout.css">
+<link rel="stylesheet" href="/StaticBlog/en/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlog/en/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlog/en/local-search.xml"};
+  </script>
+  <script  src="/StaticBlog/en/js/utils.js" ></script>
+  <script  src="/StaticBlog/en/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlog/en/">
+      <strong>RandomNamer&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/../">
+                <i class="iconfont icon-in-alt"></i>
+                中文
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlog/en/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Save My Kindle: Make EPUBs with JS">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-24 02:44" pubdate>
+        April 24, 2022 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k words
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14 min to read
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Save My Kindle: Make EPUBs with JS</h1>
+            
+             
+              <p class="note note-primary"> This Page is translated by <span style="font-weight: 700;"> <a target="_blank" rel="noopener" href="https://github.com/RandomNamer/MarkdownTranslator">automatic translation tool</a></span>. Some text may be inaccurate or ambiguous.</p>
+            
+            
+              <p class="note-info"> This article is related to <span style="font-weight: 700;" ><a target="_blank" rel="noopener" href="https://github.com/RandomNamer/dmzj-reimagine " >a personal project</a></span>, from which some snippets in this article may be found. </p>
+              
+            <div class="markdown-body">
+              <h1 id="data-source"><a href="#data-source" class="headerlink" title="data source"></a>data source</h1><p>Looking at the client of DMZJ (a Chinese website for manga &amp; novel) has long been unhappy, it is better to bully this APK while is not confuscated enough, and use their API to play with myself. With the idea of ​​resurrecting my seven-year-old Kindle, this time I will catch an anime one. Home light novel source, make it an e-book for it to read (why don’t you catch comics? Don’t ask is today’s World Book Day). Although Anime Home has a lot of Chinese light novel resources, its mobile reading experience is not flattering, and the full-screen advertisements on the web basically cut off the possibility of reading with the slow and stuck browser of Kindle. The original idea is to host a web page locally and make a static reading page suitable for the Kindle browser through the DMZJ API (for performance reasons, it is best to directly disable the JavaScript of the Kindle browser). So I quickly thought that since the API is already available, wouldn’t it be beautiful to just pick it up and make an e-book and send it over? Anyway, everything is difficult at the beginning, as long as you get the API, the rest of the client, the web or the local storage can be easily at your fingertips. Of course, judging from the demise history of several versions of DMZJ clients that I have witnessed on the Windows UWP side, their APIs still change frequently, so it is better to store them locally.</p>
+<p>As mentioned earlier, DMZJ’s API has been crawled at least a few years ago, so there have been numerous third-party API-based clients, and there are still APIs available on GitHub in 2021. But unfortunately, the results of the packet capture now show that the previous API is outdated, at least in the comic/novel chapter section, DMZJ’s API has introduced new encryption. <img src="image-20220424174404514.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220424174404514" style="zoom:50%;" /></p>
+<img src="image-20220424161305785.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220424161305785" style="zoom: 50%;" />
+
+<p>So sacrificed <code>jadx</code>, directly decompiled to see its novel details page <code>NovelInstructionActivity</code> source code. We can see that the basic information interface of the novel is encrypted.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> z)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.mNovelProtocol.setPathParam(<span class="hljs-keyword">this</span>.intent_extra_nid);<br>        AppBeanFunctionUtils.setCommentRequestException(getActivity(), <span class="hljs-keyword">this</span>.mNovelProtocol);<br>        MyNetClient.getInstance().getNovel(<span class="hljs-keyword">this</span>.intent_extra_nid, <span class="hljs-keyword">new</span> MyCallBack1(getActivity(), <span class="hljs-keyword">new</span> MyCallBack1.B() &#123;<br>            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelInstructionActivity.AnonymousClass1 */</span><br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.net.MyCallBack1.B</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveData</span><span class="hljs-params">(String str)</span> </span>&#123;<br>                NovelInstructionActivity.<span class="hljs-keyword">this</span>.scrollview.onRefreshComplete();<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-keyword">byte</span>[] decryptWithPrivateKeyBlock = RSAUtil.decryptWithPrivateKeyBlock(str);<br>                    JsonFormat jsonFormat = <span class="hljs-keyword">new</span> JsonFormat();<br>                    Novel.NovelInfoResponse parseFrom = Novel.NovelInfoResponse.parseFrom(decryptWithPrivateKeyBlock);<br>                    <span class="hljs-keyword">if</span> (parseFrom.getErrno() == <span class="hljs-number">0</span>) &#123;<br>                        <span class="hljs-keyword">final</span> String printToString = jsonFormat.printToString((Message) parseFrom.getDataOrBuilder());<br>                        NovelInstructionActivity.<span class="hljs-keyword">this</span>.getDefaultHandler().postDelayed(<span class="hljs-keyword">new</span> Runnable() &#123;<br>                            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelInstructionActivity.AnonymousClass1.AnonymousClass1 */</span><br><br>                            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                                NovelInstructionActivity.<span class="hljs-keyword">this</span>.refreshBasicInfos(printToString);<br>                            &#125;<br>                        &#125;, <span class="hljs-number">500</span>);<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        UIUtils.show(NovelInstructionActivity.<span class="hljs-keyword">this</span>.getActivity(), parseFrom.getErrmsg());<br>                    &#125;<br>                    NovelInstructionActivity.<span class="hljs-keyword">this</span>.ltUnionADPlatform = BrowseAdHelper.setAd(NovelInstructionActivity.<span class="hljs-keyword">this</span>.getActivity(), NovelInstructionActivity.<span class="hljs-keyword">this</span>.layout_ad_layout, <span class="hljs-number">2</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.net.MyCallBack1.B</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveError</span><span class="hljs-params">(String str, <span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>                NovelInstructionActivity.<span class="hljs-keyword">this</span>.scrollview.onRefreshComplete();<br>            &#125;<br>        &#125;));<br></code></pre></td></tr></table></figure>
+
+<p>Then we look at its <code>RSAUtil</code>, the private key is in plaintext, you know.</p>
+<p>Simply call it and find that the previously captured request can be decoded normally, and the content should be protobuf.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">object</span> DMZJDecrypter &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">run</span><span class="hljs-params">(ciphertext: <span class="hljs-type">String</span>)</span></span>&#123;<br>        println(<br>            String(RSAUtils.decryptWithPrivateKeyBlock(ciphertext))<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="image-20220424174218724.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220424174218724"></p>
+<p>Use <code>protoc --decode_raw &lt; ~/Downloads/dmzj_resp.bin &gt; ~/Downloads/dmzj_resp.txt</code> to decode, you can see the following structure:</p>
+<img src="image-20220424185604656.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220424185604656" style="zoom:50%;" />
+
+<p>But we also need to find the meaning of these fields. In the apk, we can see three ProtoBuf entity classes generated by <code>protoc</code>:</p>
+<img src="image-20220424185144983.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220424185144983" style="zoom:50%;" />
+
+<p>For example, the Novel type corresponds to three objects NovelChapter, NovelInfo, NovelVolume, and their definitions are similar:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">NovelInfo</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.memoizedIsInitialized = -<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">this</span>.novelId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.name_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.zone_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.status_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateVolumeName_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateChapterName_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateVolumeId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateChapterId_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.lastUpdateTime_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.cover_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.hotHits_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.introduction_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.types_ = LazyStringArrayList.EMPTY;<br>            <span class="hljs-keyword">this</span>.authors_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.firstLetter_ = <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">this</span>.subscribeNum_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.redisUpdateTime_ = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">this</span>.volume_ = Collections.emptyList();<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<p>Apparently this corresponds to the structure of protobuf. At this point we can finally use the new version of the DMZJ API.</p>
+<p>The following is the Protobuf IDL example of the DMZJ light novel I summarized:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs idl">syntax = &quot;proto2&quot;;<br><br>package novel;<br><br>message NovelChapterDetail &#123;<br>    required int32 chapterId = 1;<br>    required string chapterName = 2;<br>    required int32 chapterOrder = 3; <br>&#125;<br><br>message NovelVolumeDetail &#123;<br>    required int32 volumeId = 1;<br>    required string volumeName = 2;<br>    required int32 volumeOrder = 3;<br>    repeated NovelChapterDetail chapters = 4;<br>&#125;<br><br>message NovelChapterResponse &#123;<br>    optional int32 errno = 1;<br>    optional string errmsg = 2;<br>    repeated NovelVolumeDetail data = 3;<br>&#125;<br><br>message NovelInfoResponse &#123;<br>    optional int32 errno = 1;<br>    optional string errmsg = 2;<br>    repeated NovelInfo data = 3;<br>&#125;<br><br><br>message NovelVolume &#123;<br>    required int32 volumeId = 1;<br>    required int32 novelId = 2;<br>    required string volumeName = 3;<br>    required int32 volumeOrder = 4;<br>    required uint64 addtime = 5;<br>    required uint32 sumChapters = 6;<br>&#125;<br><br>message NovelInfo &#123;<br>    required int32 novelId = 1;<br>    required string name = 2;<br>    required string zone = 3;<br>    required string status = 4;<br>    required string lastUpdateVolumeName = 5 ;<br>    required string lastUpdateChapterName = 6;<br>    required int32 lastUpdateVolumeId = 7;<br>    required int32 lastUpdateChapterId = 8;<br>    required uint64 lastUpdateTime = 9;<br>    required string cover = 10;<br>    required int32 hotHits = 11;<br>    required string introduction = 12;<br>    repeated string types = 13;<br>    required string authors = 14;<br>    required string firstLetter = 15;<br>    required int32 subscribeNum = 16;<br>    optional uint64 redisUpdateTime = 17; <br>    repeated NovelVolume volume = 18;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>Simply decode it with <code>protobuf.js</code> to get the directory we want:</p>
+<p><img src="image-20220425000148505.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220425000148505"></p>
+<p>Of course, there is the last step to get the text of the corresponding chapter. This interface needs to be accessed with the <code>volumeId</code> and <code>chapterId</code> obtained in the previous step and the two queries <code>t</code> and <code>k</code>: <code>http://jurisdiction.muwai .com/lnovel/$&#123;volumeId&#125;_$&#123;chapterId&#125;.txt</code>.</p>
+<img src="image-20220425120102467.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220425120102467" style="zoom:50%;" />
+
+<p>As the name suggests, <code>t</code> is the current timestamp, and <code>k</code> should be a random ID generated based on the timestamp, changing any of them, or not uploading will result in a 403.</p>
+<img src="image-20220425120229409.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220425120229409" style="zoom:50%;" />
+
+<p>Decompile <code>NovelBrowsActivity</code>, you can see the logic of chapter refresh:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> NovelDescription.Chapter chapter = <span class="hljs-keyword">this</span>.novelChapters.get(z ? i - <span class="hljs-number">1</span> : i + <span class="hljs-number">1</span>);<br>        loadChapterNovel(<span class="hljs-keyword">null</span>, chapter.getChapter_name(), <span class="hljs-keyword">this</span>.intent_extra_nid, chapter.getVolume_id(), chapter.getChapter_id(), <span class="hljs-keyword">new</span> OnCommenCompleteListener() &#123;<br>            <span class="hljs-comment">/* class com.dmzj.manhua.ui.NovelBrowseActivity.AnonymousClass8 */</span><br><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.ui.NovelBrowseActivity.OnCommenCompleteListener</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">(Bundle bundle)</span> </span>&#123;<br>                ...<br>            &#125;<br>        &#125;, <span class="hljs-keyword">false</span>, z);<br></code></pre></td></tr></table></figure>
+
+<p>In the <code>loadChapterNovel</code> method, we can see the method <code>MyspUtils</code> that splices out the final URL, this is just a tool for taking SahredPreference, it will take the cache address of the corresponding URL from SahredPreference, and then load it locally:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadChapterNovel</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ReadHistory4Novel readHistory4Novel, String str, String str2, String str3, String str4, <span class="hljs-keyword">final</span> OnCommenCompleteListener onCommenCompleteListener, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> z, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> z2)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        String str5 = <span class="hljs-keyword">new</span> URLPathMaker(<span class="hljs-keyword">this</span>.ctx, URLPathMaker.URL_ENUM.HttpUrlTypeNovelDownLoad).get_url(URLPathMaker.URL_ENUM.HttpUrlTypeNovelDownLoad, str3 + <span class="hljs-string">&quot;_&quot;</span> + str4);<br>        KLog.log(<span class="hljs-string">&quot;小说地址&quot;</span>, str5);<br>        String str6 = MyspUtils.getStr(<span class="hljs-keyword">this</span>.ctx, str5);<br>        KLog.log(<span class="hljs-string">&quot;str&quot;</span>, str6);<br>        <span class="hljs-keyword">if</span> (ZzTool.isNoEmpty(str6) &amp;&amp; onCommenCompleteListener != <span class="hljs-keyword">null</span>) &#123;...&#125;<br>  			 <span class="hljs-keyword">this</span>.mNovelHelper.getLocalLocalFile(getActivity(), str2, str3, str4, <span class="hljs-keyword">new</span> NovelHelper.OnLoadCompleteListener() &#123;<br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// com.dmzj.manhua.novel.NovelHelper.OnLoadCompleteListener</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onComplete</span><span class="hljs-params">(String str, String str2)</span> </span>&#123;...&#125;<br>         &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>After the cache is not hit, the <code>NovelHelper.getLocalLocalFile()</code> method is called (this method will actually perform the download, but the name is… good coding practice). Therefore, the URL made earlier is only used to query the cache, and does not trigger the download behavior in this method.</p>
+<p>In <code>NovelHelper</code>, we finally see the part of calculating two queries, the key is an MD5 encoding mixed with timestamps.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">goWebDownLoad</span><span class="hljs-params">(<span class="hljs-keyword">final</span> StepActivity stepActivity, String str, <span class="hljs-keyword">final</span> String str2, <span class="hljs-keyword">final</span> OnLoadCompleteListener onLoadCompleteListener)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!AppUtils.RELEASE) &#123;<br>            Log.d(<span class="hljs-string">&quot;novel_goWebDownLoad&quot;</span>, <span class="hljs-string">&quot;webpath = &quot;</span> + str);<br>        &#125;<br>        <span class="hljs-keyword">long</span> currentTimeMillis = System.currentTimeMillis() / <span class="hljs-number">1000</span>;<br>        String replace = str.replace(Api.NOVEL_URL, <span class="hljs-string">&quot;&quot;</span>);<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        sb.append(str);<br>        sb.append(<span class="hljs-string">&quot;?t=&quot;</span>);<br>        sb.append(currentTimeMillis);<br>        sb.append(<span class="hljs-string">&quot;&amp;k=&quot;</span>);<br>        sb.append(MD5.MD5Encode(Api.NOVEL_KEY + replace + currentTimeMillis).toLowerCase());<br>        String sb2 = sb.toString();<br>        KLog.log(<span class="hljs-string">&quot;小说地址====&quot;</span>, sb2);<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Now we have a usable query.</p>
+<img src="image-20220425134554616.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220425134554616" style="zoom:50%;" />
+
+<h1 id="Make-an-eBook"><a href="#Make-an-eBook" class="headerlink" title="Make an eBook"></a>Make an eBook</h1><p>I have to admit that the recent API revision of DMZJ has indeed brought a lot of trouble to obtaining data. Fortunately, the obfuscation intensity of the client APK is very low, and its encryption logic and interface details can be obtained through decompilation. Now we have a complete data source, including book information (author, cover, region, tag, etc.), bibliographic information (volume, chapter), and the corresponding text for each chapter.</p>
+<p>Here I used the npm module <code>epub-gen</code> to generate Epub eBooks. Since Epub also applies HTML and CSS typesetting, you only need to provide HTML chapter text and external CSS to generate Epub. The use of <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/epub-gen">epub-gen</a> is quite simple. You only need to specify some options and construct an Epub object from the list of objects in the chapters as the content to complete the e-book. generation. The module can also automatically download the picture in the url as the cover.</p>
+<p>The code to generate the Epub eBook from the data structure obtained earlier is as follows:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> volume <span class="hljs-keyword">of</span> volumes) &#123;<br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> chapter <span class="hljs-keyword">of</span> volume.chapters) &#123;<br>           <span class="hljs-keyword">let</span> text = <span class="hljs-keyword">await</span> getChapterText(volume.volumeId, chapter.chapterId)<br>           chapter.text = text<br>       &#125;<br>       volume.chapters = volume.chapters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.chapterOrder - b.chapterOrder)<br>   &#125;<br>   <span class="hljs-comment">// volumes = volumes.sort((a, b) =&gt; a.volumeOrder - b.volumeOrder)</span><br>   <span class="hljs-keyword">let</span> volumesStr = <span class="hljs-built_in">JSON</span>.stringify(volumes)<br>   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Successfully get raw text&quot;</span>, volumesStr)<br>   <span class="hljs-keyword">const</span> workingDir = path.join(outputDir, info.novelId.toString())<br>   <span class="hljs-keyword">if</span> (!fs.existsSync(workingDir)) &#123;<br>       fs.mkdirSync(workingDir);<br>   &#125;<br>   <span class="hljs-comment">// fs.writeFileSync(path.join(workingDir, &#x27;volumes.json&#x27;), volumesStr, err =&gt; &#123;</span><br>   <span class="hljs-comment">//     console.error(err)</span><br>   <span class="hljs-comment">// &#125;)</span><br><br>   <span class="hljs-keyword">var</span> content = []<br>   volumes.forEach(<span class="hljs-function"><span class="hljs-params">vol</span> =&gt;</span> &#123;<br>       content.push(&#123;<br>           <span class="hljs-attr">title</span>: vol.volumeName,<br>           <span class="hljs-attr">data</span>: <span class="hljs-string">&quot;&quot;</span><br>       &#125;)<br>       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> chap <span class="hljs-keyword">of</span> vol.chapters) &#123;<br>           content.push(&#123;<br>               <span class="hljs-attr">title</span>: chap.chapterName,<br>               <span class="hljs-attr">data</span>: <span class="hljs-string">`&lt;div&gt;<span class="hljs-subst">$&#123;chap.text&#125;</span>&lt;/div&gt;`</span><br>           &#125;)<br>       &#125;<br>   &#125;)<br><br>   <span class="hljs-keyword">const</span> options = &#123;<br>       <span class="hljs-attr">title</span>: info.name,<br>       <span class="hljs-attr">author</span>: info.authors,<br>       <span class="hljs-attr">cover</span>: info.cover,<br>       <span class="hljs-attr">lang</span>: <span class="hljs-string">&quot;zh&quot;</span>,<br>       <span class="hljs-attr">tocTitle</span>: <span class="hljs-string">&quot;目录&quot;</span>,<br>       <span class="hljs-attr">content</span>: content,<br>       <span class="hljs-attr">verbose</span>: <span class="hljs-literal">true</span><br>   &#125;<br><br>   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Epub(options, path.join(workingDir, <span class="hljs-string">`<span class="hljs-subst">$&#123;info.name&#125;</span>.epub`</span>))<br></code></pre></td></tr></table></figure>
+
+<img src="image-20220425162559469.png" srcset="/StaticBlog/en/img/loading.gif" lazyload alt="image-20220425162559469" style="zoom:50%;" />
+
+<p>Everything works perfectly…but <code>epub-gen</code> doesn’t actually support multi-level directories, which means, we get a volume-chapter two-level structure that cannot be generated into an epub….. . But it’s not a big problem. First of all, there are some workarounds, such as inserting empty pages in the <code>data</code> of the volume, and then adding other chapters; secondly, you can directly modify the <code>epub-gen</code>, which is beyond the scope of this article.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/en/tags/JS/">JS</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/en/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/en/tags/Android/">Android</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    This article uses <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="nofollow noopener noopener">CC BY-SA 4.0 License</a>. You may need to give appropriate credit, provide a link to the license, and indicate if changes were made when referencing this article.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlog/en/2021/11/11/DICOM-protocol-internals/">
+                        <span class="hidden-mobile">Analysis of DICOM Transfer Protocols</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlog/en/js/events.js" ></script>
+<script  src="/StaticBlog/en/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlog/en/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlog/en/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlog/en/js/boot.js" ></script>
+
+
+</body>
+</html>
