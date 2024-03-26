@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlog/en/img/favicon.png">
+  <link rel="icon" href="/StaticBlog/en/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zeyu Zhang">
+  <meta name="keywords" content="">
+  <meta name="description" content="Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tonemapping by default Using Defualt CRF of 23 for AVC and 28 for HEVC I prefer subtitle burn-in since it eleminates any">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jellyfinTranscodeBench">
+<meta property="og:url" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/index.html">
+<meta property="og:site_name" content="A Random Blog">
+<meta property="og:description" content="Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tonemapping by default Using Defualt CRF of 23 for AVC and 28 for HEVC I prefer subtitle burn-in since it eleminates any">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004515287.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005327975.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326011426188.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326012141376.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326012738767.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326013108836.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326023051969.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326023625272.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326024747894.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326025212560.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326024248852.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326030527752.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004908964.png">
+<meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005114050.png">
+<meta property="article:published_time" content="2024-03-26T04:39:35.000Z">
+<meta property="article:modified_time" content="2024-03-26T08:02:01.223Z">
+<meta property="article:author" content="Zeyu Zhang">
+<meta property="article:tag" content="NAS, hardware, Jellyfin">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004515287.png">
+  
+  <title>jellyfinTranscodeBench - A Random Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlog/en/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlog/en/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlog/en/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlog/en/css/layout.css">
+<link rel="stylesheet" href="/StaticBlog/en/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlog/en/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlog/en/local-search.xml"};
+  </script>
+  <script  src="/StaticBlog/en/js/utils.js" ></script>
+  <script  src="/StaticBlog/en/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlog/en/">
+      <strong>RandomNamer&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/../">
+                <i class="iconfont icon-in-alt"></i>
+                中文
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlog/en/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="jellyfinTranscodeBench">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-03-26 00:39" pubdate>
+        March 26, 2024 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k words
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 min to read
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">jellyfinTranscodeBench</h1>
+            
+            
+             
+            <div class="markdown-body">
+              <blockquote>
+<ul>
+<li>Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets</li>
+<li>Use HDR tonemapping by default</li>
+<li>Using Defualt CRF of 23 for AVC and 28 for HEVC</li>
+<li>I prefer subtitle burn-in since it eleminates any subtitle sync issue in browsers. For HDR contents I prefer direct streaming using 3rd party apps to deal with subtitles.</li>
+</ul>
+</blockquote>
+<h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p>Intel’s latest IGPU codec is impressive, however there’s a myth that encoder and decoder alone determines transcoding efficiency. However with morden 4K HDR videos and styled/image subtitles transcoding is in many cases a synthetic load for CPU, GPU and media engine, especailly for low powered NAS CPUs. Here I have multiple footages on my NAS transcoded via Jellyfin, installed on two setups:</p>
+<p> a) extremely low powered machine with a 4 E-core Intel N100 CPU, 8GB DDR4 memory and the powerful Intel Gen12 media encoders.<br> b) extremely high powered machine with a 16-Core AMD Ryzen 9 7950X3D CPU, 64GB DDR5 memory and NVIDIA RTX 4090 graphics card, eliminating any possible bottleneck on CPU and GPU 3D engine.</p>
+<p> The result is somewhat unexpected, the intel N100 is constantly having the fast media engines underloaded when burning subtitles in Linux, and virtually everywhere in Windows. In Windows <code>ffmpeg</code> process can easily saturate the CPU just pulling files via SMB. On the other hand, the Intel media engine, even fully loaded, is 3-4x slower than the latest NVENC, and that’s only one of the total of 2.</p>
+<p> While Intel’s low power iGPU is still my go for always-on home media servers, a beefier setup is certainly useful if you want to serve multiple users simultanously.</p>
+<h2 id="For-N100"><a href="#For-N100" class="headerlink" title="For N100"></a>For N100</h2><ul>
+<li>VAAPI makes no  difference</li>
+<li>Low-power encoder is slightly faster</li>
+<li>VPP tone-mapping is useless unless you want that 4W power saving</li>
+<li>Tone mapping and subtitle burning will cause GPU 3D engine bottleneck and impact performance badly.</li>
+<li>Not able to handle 4K in Windows.</li>
+</ul>
+<h2 id="For-Nvidia-Cards"><a href="#For-Nvidia-Cards" class="headerlink" title="For Nvidia Cards"></a>For Nvidia Cards</h2><ul>
+<li>RTX 4090 could pull over 150W power when transcoding and hit maximium frequency</li>
+<li>Since there is no 3D and CPU bottleneck, one NVENC should constantly hit full load.</li>
+</ul>
+<h1 id="Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux"><a href="#Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux" class="headerlink" title="Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux"></a>Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux</h1><h2 id="JW4"><a href="#JW4" class="headerlink" title="JW4"></a>JW4</h2><ul>
+<li><p>Bitrate: 67.4Mbps</p>
+</li>
+<li><p>Purpose: Remux 4K HDR10</p>
+</li>
+<li><p>4Kto4K, VPP tone mapping, no sub burn-in: ~50fps</p>
+<img src="image-20240326004515287.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/> </li>
+<li><p>4Kto4K, non-VPP tone mapping, no burn-in: 57fps</p>
+</li>
+<li><p>4Kto4K, VPP tone mapping burin-in: 27fps </p>
+<ul>
+<li>Lower CPU and GPU (both 3D and codec) usage</li>
+<li>~1W GPU, ~7w CPU power</li>
+</ul>
+</li>
+<li><p>4Kto4K, non-VPP tone mapping burin-in: 43fps </p>
+<ul>
+<li>~1.8w GPU, ~10w CPU power</li>
+</ul>
+</li>
+<li><p>4Kto1080p, subtitle burn-in: 82fps</p>
+</li>
+</ul>
+<h2 id="GunBuster"><a href="#GunBuster" class="headerlink" title="GunBuster"></a>GunBuster</h2><ul>
+<li><p>Bitrate: 11.7Mbps</p>
+</li>
+<li><p>Purpose: 1080 * 1440 video</p>
+</li>
+<li><p>Original: ~200fps</p>
+<img src="image-20240326005327975.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>1080pto1080p 8Mbps: ~270fps</p>
+</li>
+</ul>
+<h2 id="Mazouku"><a href="#Mazouku" class="headerlink" title="Mazouku"></a>Mazouku</h2><ul>
+<li><p>Bitrate: 3.7Mbps</p>
+</li>
+<li><p>Purpose: 1080p SDR WEBDL anime, with pre-burnt-in subtitles</p>
+</li>
+<li><p>Original: ~230fps</p>
+<img src="image-20240326011426188.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+</ul>
+<h2 id="Madoka"><a href="#Madoka" class="headerlink" title="Madoka"></a>Madoka</h2><ul>
+<li><p>Bitrate: 11.7Mbps</p>
+</li>
+<li><p>Purpose: High bitrate Bluray Anime</p>
+</li>
+<li><p>Original: 117fps</p>
+</li>
+<li><p>to 8Mbps: 114fps</p>
+<img src="image-20240326012141376.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+</ul>
+<h2 id="SW2"><a href="#SW2" class="headerlink" title="SW2"></a>SW2</h2><ul>
+<li><p>Bitrate: 41.5Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate Bluray 4K HDR10</p>
+</li>
+<li><p>4Kto4K, sub burn-in: ~50fps</p>
+<img src="image-20240326012738767.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>4Kto4K, no subtitle: ~75fps</p>
+</li>
+<li><p>4Kto1080p 8Mbps, sub burn-in: 94fps</p>
+</li>
+</ul>
+<h2 id="Euphoria"><a href="#Euphoria" class="headerlink" title="Euphoria"></a>Euphoria</h2><ul>
+<li><p>Bitrate: 22.7Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate HDR10 TV show</p>
+</li>
+<li><p>4Kto4K, no sub: ~110fps </p>
+<img src="image-20240326013108836.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>4Kto4K, sub burn-in: ~50fps</p>
+</li>
+<li><p>to 1080p 8Mbps, with sub: ~100fps</p>
+</li>
+</ul>
+<h2 id="LongSeason-No-subtitle"><a href="#LongSeason-No-subtitle" class="headerlink" title="LongSeason (No subtitle)"></a>LongSeason (No subtitle)</h2><ul>
+<li><p>Bitrate: 7.1Mbps</p>
+</li>
+<li><p>Purpose: Low bitrate WEBDL 4K HDR (DV)</p>
+</li>
+<li><p>4Kto4K: ~55fps (3D engine bottleneck, video render at ~60%)</p>
+<img src="image-20240326023051969.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>to 1080p 6Mbps: ~130fps</p>
+</li>
+</ul>
+<h2 id="Cyberpunk"><a href="#Cyberpunk" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><ul>
+<li><p>Bitrate:  5.7Mbps</p>
+</li>
+<li><p>Purpose: 1080p HDR</p>
+</li>
+<li><p>Original, with sub burn-in: ~120fps</p>
+<img src="image-20240326023625272.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>without sub burn-in: ~220fps </p>
+</li>
+</ul>
+<h1 id="Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Windows"><a href="#Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Windows" class="headerlink" title="Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Windows"></a>Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Windows</h1><h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ul>
+<li>Windows 11 23H2 fresh install</li>
+<li>New Intel drivers break tone mapping, using driver 5085.</li>
+</ul>
+<h2 id="JW4-1"><a href="#JW4-1" class="headerlink" title="JW4"></a>JW4</h2><ul>
+<li><p>Bitrate: 67.4Mbps</p>
+</li>
+<li><p>Purpose: Remux 4K HDR10</p>
+</li>
+<li><p>4Kto4K, VPP tone mapping, no sub burn-in: ~30fps</p>
+ <img src="image-20240326024747894.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>4Kto4K, burin-in: 17fps </p>
+</li>
+<li><p>4Kto1080p, subtitle burn-in: ~40fps</p>
+</li>
+</ul>
+<h2 id="GunBuster-1"><a href="#GunBuster-1" class="headerlink" title="GunBuster"></a>GunBuster</h2><ul>
+<li><p>Bitrate: 11.7Mbps</p>
+</li>
+<li><p>Purpose: 1080 * 1440 video</p>
+</li>
+<li><p>Original: ~200fps</p>
+<img src="image-20240326025212560.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>1080pto1080p 8Mbps: ~210fps</p>
+</li>
+</ul>
+<h2 id="Mazouku-1"><a href="#Mazouku-1" class="headerlink" title="Mazouku"></a>Mazouku</h2><ul>
+<li>Bitrate: 3.7Mbps</li>
+<li>Purpose: 1080p WEBDL anime, with pre-burnt-in subtitles</li>
+<li>Original: ~160fps</li>
+</ul>
+<h2 id="Madoka-1"><a href="#Madoka-1" class="headerlink" title="Madoka"></a>Madoka</h2><ul>
+<li><p>Bitrate: 11.7Mbps</p>
+</li>
+<li><p>Purpose: High bitrate Bluray Anime</p>
+</li>
+<li><p>Original, burn-in: 89fps</p>
+<img src="image-20240326024248852.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>to 6Mbps: 92fps</p>
+</li>
+</ul>
+<h2 id="SW2-1"><a href="#SW2-1" class="headerlink" title="SW2"></a>SW2</h2><ul>
+<li><p>Bitrate: 41.5Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate Bluray 4K HDR10</p>
+</li>
+<li><p>4Kto4K, sub burn-in: 24fps</p>
+</li>
+<li><p>4Kto4K, no subtitle: 36fps</p>
+</li>
+<li><p>4Kto1080p 8Mbps, sub burn-in: 52fps</p>
+</li>
+</ul>
+<h2 id="Euphoria-1"><a href="#Euphoria-1" class="headerlink" title="Euphoria"></a>Euphoria</h2><ul>
+<li><p>Bitrate: 22.7Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate HDR10 TV show</p>
+</li>
+<li><p>4Kto4K, no sub: ~30fps </p>
+</li>
+<li><p>4Kto4K, sub burn-in: ~20fps</p>
+</li>
+<li><p>to 1080p 8Mbps, with sub: ~50fps</p>
+</li>
+</ul>
+<h2 id="LongSeason-No-subtitle-1"><a href="#LongSeason-No-subtitle-1" class="headerlink" title="LongSeason (No subtitle)"></a>LongSeason (No subtitle)</h2><ul>
+<li><p>Bitrate: 7.1Mbps</p>
+</li>
+<li><p>Purpose: Low bitrate WEBDL 4K HDR (DV)</p>
+</li>
+<li><p>4Kto4K: 11fps</p>
+</li>
+<li><p>to 1080p 6Mbps: 21fps</p>
+<img src="image-20240326030527752.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+</ul>
+<h2 id="Cyberpunk-1"><a href="#Cyberpunk-1" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><ul>
+<li><p>Bitrate:  5.7Mbps</p>
+</li>
+<li><p>Purpose: 1080p HDR</p>
+</li>
+<li><p>Original, with sub burn-in: 53fps</p>
+</li>
+<li><p>without sub burn-in: ~100fps </p>
+</li>
+</ul>
+<h1 id="NVIDIA-RTX-4090-16384CUDAs-2835MHz"><a href="#NVIDIA-RTX-4090-16384CUDAs-2835MHz" class="headerlink" title="NVIDIA RTX 4090, 16384CUDAs @2835MHz"></a>NVIDIA RTX 4090, 16384CUDAs @2835MHz</h1><h2 id="JW4-2"><a href="#JW4-2" class="headerlink" title="JW4"></a>JW4</h2><ul>
+<li><p>Bitrate: </p>
+</li>
+<li><p>Purpose:</p>
+</li>
+<li><p>4Kto4K, tone mapping, no sub burn-in: ~200fps</p>
+ <img src="image-20240326004908964.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>4Kto1080p, subtitle burn-in: ~240fps</p>
+</li>
+</ul>
+<h2 id="GunBuster-2"><a href="#GunBuster-2" class="headerlink" title="GunBuster"></a>GunBuster</h2><ul>
+<li><p>Bitrate: 11.7Mbps</p>
+</li>
+<li><p>Purpose: 1080 * 1440 video</p>
+</li>
+<li><p>1080pto1080p: ~800fps</p>
+<img src="image-20240326005114050.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
+<li><p>1080pto1080p 8Mbps: ~900fps</p>
+</li>
+</ul>
+<h2 id="Mazouku-2"><a href="#Mazouku-2" class="headerlink" title="Mazouku"></a>Mazouku</h2><ul>
+<li>Bitrate: 3.7Mbps</li>
+<li>Purpose: 1080p WEBDL anime, with pre-burnt-in subtitles</li>
+<li>Original: 837fps</li>
+</ul>
+<h2 id="Madoka-2"><a href="#Madoka-2" class="headerlink" title="Madoka"></a>Madoka</h2><ul>
+<li>Bitrate: 11.7Mbps</li>
+<li>Purpose: High bitrate Bluray Anime</li>
+<li>Original, burn-in: ~650fps</li>
+<li>to 6Mbps: ~700fps</li>
+</ul>
+<h2 id="SW2-2"><a href="#SW2-2" class="headerlink" title="SW2"></a>SW2</h2><ul>
+<li><p>Bitrate: 41.5Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate Bluray 4K HDR10</p>
+</li>
+<li><p>4Kto4K, sub burn-in: ~250fps</p>
+</li>
+<li><p>4Kto4K, no subtitle: ~260fps</p>
+</li>
+<li><p>4Kto1080p 8Mbps, sub burn-in: ~400fps</p>
+</li>
+</ul>
+<h2 id="Euphoria-2"><a href="#Euphoria-2" class="headerlink" title="Euphoria"></a>Euphoria</h2><ul>
+<li><p>Bitrate: 22.7Mbps</p>
+</li>
+<li><p>Purpose: High Bitrate HDR10 TV show</p>
+</li>
+<li><p>4Kto4K, sub burn-in: ~250fps</p>
+</li>
+<li><p>4Kto4K, no sub: ~260fps </p>
+</li>
+<li><p>to 1080p 8Mbps, with sub: ~300fps</p>
+</li>
+</ul>
+<h2 id="LongSeason-No-subtitle-2"><a href="#LongSeason-No-subtitle-2" class="headerlink" title="LongSeason (No subtitle)"></a>LongSeason (No subtitle)</h2><ul>
+<li><p>Bitrate: 7.1Mbps</p>
+</li>
+<li><p>Purpose: Low bitrate WEBDL 4K HDR (DV)</p>
+</li>
+<li><p>4Kto4K: 370fps</p>
+</li>
+<li><p>to 1080p 6Mbps: 710fps</p>
+</li>
+</ul>
+<h2 id="Cyberpunk-2"><a href="#Cyberpunk-2" class="headerlink" title="Cyberpunk"></a>Cyberpunk</h2><ul>
+<li><p>Bitrate:  5.7Mbps</p>
+</li>
+<li><p>Purpose: 1080p HDR</p>
+</li>
+<li><p>Original, with sub burn-in: 860fps</p>
+</li>
+<li><p>without sub burn-in: 910fps </p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/en/tags/NAS-hardware-Jellyfin/">NAS, hardware, Jellyfin</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    This article uses <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="nofollow noopener noopener">CC BY-SA 4.0 License</a>. You may need to give appropriate credit, provide a link to the license, and indicate if changes were made when referencing this article.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlog/en/2022/04/24/dmzjReader/">
+                        <span class="hidden-mobile">Save My Kindle: Make EPUBs with JS</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlog/en/js/events.js" ></script>
+<script  src="/StaticBlog/en/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlog/en/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlog/en/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlog/en/js/boot.js" ></script>
+
+
+</body>
+</html>
