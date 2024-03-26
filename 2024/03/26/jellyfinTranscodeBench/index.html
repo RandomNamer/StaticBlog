@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004908964.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005114050.png">
 <meta property="article:published_time" content="2024-03-26T04:39:35.000Z">
-<meta property="article:modified_time" content="2024-03-26T08:17:46.810Z">
+<meta property="article:modified_time" content="2024-03-26T08:20:41.783Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="NAS, hardware, Jellyfin">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,7 @@
 <li>I prefer subtitle burn-in since it eleminates any subtitle sync issue in browsers. For HDR contents I prefer direct streaming using 3rd party apps to deal with subtitles.</li>
 </ul>
 </blockquote>
-<h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p>Intel’s latest iGPU’s transcoding performance is impressive, however there’s a myth that encoder and decoder alone determines transcoding efficiency. For me, with morden 4K HDR videos and styled/image subtitles transcoding is in many cases a synthetic load for CPU, GPU and media engine, especailly for low powered NAS CPUs. Here I have multiple test footages on my NAS transcoded via Jellyfin installed on two setups:</p>
+<h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p>Intel’s latest iGPU’s transcoding performance is impressive, however there’s a myth that encoder and decoder alone determines transcoding efficiency. For me, with morden 4K HDR videos and styled/image subtitles transcoding is in many cases a synthetic workload for CPU, GPU and media engine, especailly for low powered NAS CPUs. Here I have multiple test footages on my NAS transcoded via Jellyfin installed on two setups:</p>
 <ol>
 <li>extremely low powered machine with a 4 E-core Intel N100 CPU, 8GB DDR4 memory and the powerful Intel Gen12 media encoders.</li>
 <li>extremely high powered machine with a 16-Core AMD Ryzen 9 7950X3D CPU, 64GB DDR5 memory and NVIDIA RTX 4090 graphics card, eliminating any possible bottleneck on CPU and GPU 3D engine.</li>
