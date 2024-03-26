@@ -16,12 +16,12 @@
   <meta name="description" content="">
   <meta name="author" content="Zeyu Zhang">
   <meta name="keywords" content="">
-  <meta name="description" content="Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tonemapping by default Using Defualt CRF of 23 for AVC and 28 for HEVC I prefer subtitle burn-in since it eleminates any">
+  <meta name="description" content="Just a record of my experiment on these 3 systems. Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tone mapping by default Using Defualt CRF of 23 for AVC and 28 for HEV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jellyfinTranscodeBench">
+<meta property="og:title" content="Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter?">
 <meta property="og:url" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/index.html">
 <meta property="og:site_name" content="A Random Blog">
-<meta property="og:description" content="Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tonemapping by default Using Defualt CRF of 23 for AVC and 28 for HEVC I prefer subtitle burn-in since it eleminates any">
+<meta property="og:description" content="Just a record of my experiment on these 3 systems. Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets Use HDR tone mapping by default Using Defualt CRF of 23 for AVC and 28 for HEV">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004515287.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005327975.png">
@@ -38,13 +38,13 @@
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004908964.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005114050.png">
 <meta property="article:published_time" content="2024-03-26T04:39:35.000Z">
-<meta property="article:modified_time" content="2024-03-26T08:02:01.223Z">
+<meta property="article:modified_time" content="2024-03-26T08:15:03.939Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="NAS, hardware, Jellyfin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004515287.png">
   
-  <title>jellyfinTranscodeBench - A Random Blog</title>
+  <title>Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter? - A Random Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="jellyfinTranscodeBench">
+            <span class="h2" id="subtitle" title="Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter?">
               
             </span>
 
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.6k words
+      4.7k words
     </span>
   
 
@@ -251,21 +251,25 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">jellyfinTranscodeBench</h1>
+            <h1 style="display: none">Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter?</h1>
             
             
              
             <div class="markdown-body">
               <blockquote>
 <ul>
+<li>Just a record of my experiment on these 3 systems.</li>
 <li>Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets</li>
-<li>Use HDR tonemapping by default</li>
-<li>Using Defualt CRF of 23 for AVC and 28 for HEVC</li>
+<li>Use HDR tone mapping by default</li>
+<li>Using Defualt CRF of 23 for AVC and 28 for HEVC.</li>
 <li>I prefer subtitle burn-in since it eleminates any subtitle sync issue in browsers. For HDR contents I prefer direct streaming using 3rd party apps to deal with subtitles.</li>
 </ul>
 </blockquote>
-<h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p>Intel’s latest IGPU codec is impressive, however there’s a myth that encoder and decoder alone determines transcoding efficiency. However with morden 4K HDR videos and styled/image subtitles transcoding is in many cases a synthetic load for CPU, GPU and media engine, especailly for low powered NAS CPUs. Here I have multiple footages on my NAS transcoded via Jellyfin, installed on two setups:</p>
-<p> a) extremely low powered machine with a 4 E-core Intel N100 CPU, 8GB DDR4 memory and the powerful Intel Gen12 media encoders.<br> b) extremely high powered machine with a 16-Core AMD Ryzen 9 7950X3D CPU, 64GB DDR5 memory and NVIDIA RTX 4090 graphics card, eliminating any possible bottleneck on CPU and GPU 3D engine.</p>
+<h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p>Intel’s latest iGPU’s transcoding performance is impressive, however there’s a myth that encoder and decoder alone determines transcoding efficiency. For me, with morden 4K HDR videos and styled/image subtitles transcoding is in many cases a synthetic load for CPU, GPU and media engine, especailly for low powered NAS CPUs. Here I have multiple test footages on my NAS transcoded via Jellyfin installed on two setups:</p>
+<ol>
+<li>extremely low powered machine with a 4 E-core Intel N100 CPU, 8GB DDR4 memory and the powerful Intel Gen12 media encoders.</li>
+<li>extremely high powered machine with a 16-Core AMD Ryzen 9 7950X3D CPU, 64GB DDR5 memory and NVIDIA RTX 4090 graphics card, eliminating any possible bottleneck on CPU and GPU 3D engine.</li>
+</ol>
 <p> The result is somewhat unexpected, the intel N100 is constantly having the fast media engines underloaded when burning subtitles in Linux, and virtually everywhere in Windows. In Windows <code>ffmpeg</code> process can easily saturate the CPU just pulling files via SMB. On the other hand, the Intel media engine, even fully loaded, is 3-4x slower than the latest NVENC, and that’s only one of the total of 2.</p>
 <p> While Intel’s low power iGPU is still my go for always-on home media servers, a beefier setup is certainly useful if you want to serve multiple users simultanously.</p>
 <h2 id="For-N100"><a href="#For-N100" class="headerlink" title="For N100"></a>For N100</h2><ul>
@@ -276,7 +280,7 @@
 <li>Not able to handle 4K in Windows.</li>
 </ul>
 <h2 id="For-Nvidia-Cards"><a href="#For-Nvidia-Cards" class="headerlink" title="For Nvidia Cards"></a>For Nvidia Cards</h2><ul>
-<li>RTX 4090 could pull over 150W power when transcoding and hit maximium frequency</li>
+<li>RTX 4090 could pull over 150W power when transcoding and hit maximium frequency. </li>
 <li>Since there is no 3D and CPU bottleneck, one NVENC should constantly hit full load.</li>
 </ul>
 <h1 id="Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux"><a href="#Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux" class="headerlink" title="Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux"></a>Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux</h1><h2 id="JW4"><a href="#JW4" class="headerlink" title="JW4"></a>JW4</h2><ul>
@@ -347,10 +351,10 @@
 </li>
 <li><p>Purpose: High Bitrate HDR10 TV show</p>
 </li>
-<li><p>4Kto4K, no sub: ~110fps </p>
-<img src="image-20240326013108836.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
 <li><p>4Kto4K, sub burn-in: ~50fps</p>
 </li>
+<li><p>4Kto4K, no sub: ~110fps </p>
+<img src="image-20240326013108836.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
 <li><p>to 1080p 8Mbps, with sub: ~100fps</p>
 </li>
 </ul>
@@ -432,9 +436,9 @@
 </li>
 <li><p>Purpose: High Bitrate HDR10 TV show</p>
 </li>
-<li><p>4Kto4K, no sub: ~30fps </p>
-</li>
 <li><p>4Kto4K, sub burn-in: ~20fps</p>
+</li>
+<li><p>4Kto4K, no sub: ~30fps </p>
 </li>
 <li><p>to 1080p 8Mbps, with sub: ~50fps</p>
 </li>
@@ -460,9 +464,9 @@
 </li>
 </ul>
 <h1 id="NVIDIA-RTX-4090-16384CUDAs-2835MHz"><a href="#NVIDIA-RTX-4090-16384CUDAs-2835MHz" class="headerlink" title="NVIDIA RTX 4090, 16384CUDAs @2835MHz"></a>NVIDIA RTX 4090, 16384CUDAs @2835MHz</h1><h2 id="JW4-2"><a href="#JW4-2" class="headerlink" title="JW4"></a>JW4</h2><ul>
-<li><p>Bitrate: </p>
+<li><p>Bitrate: 67.4Mbps</p>
 </li>
-<li><p>Purpose:</p>
+<li><p>Purpose: Remux 4K HDR10</p>
 </li>
 <li><p>4Kto4K, tone mapping, no sub burn-in: ~200fps</p>
  <img src="image-20240326004908964.png" srcset="/StaticBlog/en/img/loading.gif" lazyload/></li>
