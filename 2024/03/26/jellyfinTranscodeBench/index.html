@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004908964.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005114050.png">
 <meta property="article:published_time" content="2024-03-26T04:39:35.000Z">
-<meta property="article:modified_time" content="2024-03-30T02:15:00.835Z">
+<meta property="article:modified_time" content="2024-03-30T02:43:14.882Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="NAS, hardware, Jellyfin">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5k 字
+      5.1k 字
     </span>
   
 
@@ -277,8 +277,9 @@
 <li>Low-power encoder is slightly faster</li>
 <li>VPP tone-mapping is useless unless you want some power saving</li>
 <li>Tone mapping and subtitle burning may cause GPU 3D engine bottleneck and impact performance badly.</li>
+<li>Audio transcoding will also saturate CPU, capped at 5-6x.</li>
 <li>Encoding in HEVC has 10%-20% performance hit compared to H.264, however, it’s only a pain point if your browser supports HEVC and you want to watch 4K HDR tone-mapped content in your home network. </li>
-<li>For some videos FFMPEG have to probe through the entire video if one subtitle stream has no offset, better to turn on burn-in for small videos only. </li>
+<li>For some videos FFMPEG have to probe through the entire video if one subtitle stream has no offset (common for ASS or SRT streams), better to turn on burn-in for small videos only. </li>
 <li>Not able to handle 4K in Windows.</li>
 </ul>
 <h2 id="For-Nvidia-Cards"><a href="#For-Nvidia-Cards" class="headerlink" title="For Nvidia Cards"></a>For Nvidia Cards</h2><ul>
