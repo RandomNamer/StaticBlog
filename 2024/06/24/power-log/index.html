@@ -24,7 +24,7 @@
 <meta property="og:description" content="我每个月都要消耗掉超过60刀的电费。最近家里电子设备趋于稳定，故买了几个智能插座，顺便统计一下功耗。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-24T19:31:17.000Z">
-<meta property="article:modified_time" content="2024-06-24T20:22:51.268Z">
+<meta property="article:modified_time" content="2024-07-01T05:44:11.957Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="NAS">
 <meta property="article:tag" content="Home">
@@ -191,7 +191,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      713 字
+      965 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      3 分钟
     </span>
   
 
@@ -269,14 +269,25 @@
 <h2 id="MBP外接电源和电视：140W-220W"><a href="#MBP外接电源和电视：140W-220W" class="headerlink" title="MBP外接电源和电视：140W-220W"></a>MBP外接电源和电视：140W-220W</h2><ul>
 <li>在MBP自身满电的情况下随UI和壁纸不同功耗约为140W-180W；</li>
 </ul>
-<h2 id="PC待机"><a href="#PC待机" class="headerlink" title="PC待机"></a>PC待机</h2><p>AMD处理器IOD费电，待机功耗偏高。</p>
+<h2 id="PC开机"><a href="#PC开机" class="headerlink" title="PC开机"></a>PC开机</h2><p>AMD处理器IOD费电，待机功耗偏高。但其满载功耗很低。</p>
 <ul>
-<li>在电视上显示SDR画面：200-230W；</li>
-<li>关闭电视，仅待机：180-200W。</li>
+<li>不输出画面，仅待机：180-200W。</li>
+<li>使用RTX Video Upscaling观看视频：290-300W。</li>
 </ul>
-<h1 id="Sever-Complex"><a href="#Sever-Complex" class="headerlink" title="Sever Complex"></a>Sever Complex</h1><h2 id="DS1522"><a href="#DS1522" class="headerlink" title="DS1522+"></a>DS1522+</h2><p>目前挂着两块Exos X20 20TB和一块HGST HC520 12TB。</p>
+<h1 id="Sever-Complex"><a href="#Sever-Complex" class="headerlink" title="Sever Complex"></a>Sever Complex</h1><p>一般来说，开机阶段会看到最高功耗，因为系统会启动所有服务，硬盘通电起转也会相当费电。</p>
+<h2 id="DS1522"><a href="#DS1522" class="headerlink" title="DS1522+"></a>DS1522+</h2><p>目前挂着两块Exos X20 20TB和一块HGST HC520 12TB。主要的服务都在两块SSD上，但SynologyDrive跑在X20上，PT放在HC520上，都不会休眠。</p>
+<ul>
+<li>开机（从按下按钮到发出哔声）：35-55W</li>
+<li>待机（稳态，CPU占用10%以下）：～40W</li>
+</ul>
 <h2 id="N100"><a href="#N100" class="headerlink" title="N100"></a>N100</h2><p>待机时CPU package功耗在1.5W左右，最高也仅14W。</p>
-<h2 id="2-5GbE-Switch"><a href="#2-5GbE-Switch" class="headerlink" title="2.5GbE Switch"></a>2.5GbE Switch</h2>
+<ul>
+<li>开机（BIOS后，Linux Bootup）：10-25W</li>
+<li>待机（CPU占用10%以下，package power 2W以下）：4-6W</li>
+<li>满载（CPU package 13-14W）： 22W</li>
+</ul>
+<h2 id="2-5GbE-Switch"><a href="#2-5GbE-Switch" class="headerlink" title="2.5GbE Switch"></a>2.5GbE Switch</h2><p>～8.5W</p>
+
             </div>
             <hr>
             <div>
