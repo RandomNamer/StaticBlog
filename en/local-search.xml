@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>C# Quick Start</title>
+    <link href="/StaticBlog/en/2024/06/24/csharp-quick-start/"/>
+    <url>/StaticBlog/en/2024/06/24/csharp-quick-start/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><ul><li>Singed primitive types: <code>sbyte</code>, <code>ushort</code>, <code>uint</code>, <code>ulong</code>, built-in 128bit big number: <code>decimal</code>, plus every primitive Java has.</li><li><code>foreach</code> keyword: for interate through <code>IEnumerable</code>, just like <code>for in</code> in Java</li><li>Data class equiv: <code>record</code></li><li>Support vararg and default params</li><li><code>ref</code> and <code>out</code> : pass an argument by reference. <code>out</code> does not require it to be initialized first, so the method can initialize it and then after calling method the caller can access it, no return needed.</li><li><code>yeild return</code> : return  enumerable; <code>yeild break</code> : dont include in the enumerable</li><li>Named params: <code>Method(2, 3, &quot;some&quot;, other: 4)</code></li><li>Support extension methods</li><li>Nullable variable through <code>?</code> , however under the hood it’s a struct <code>Nullable&lt;T&gt;</code>, still it’s more efficient than Java’s boxed objects.</li><li><code>HasValue</code> and <code>??</code> :  same as  <code>!= null</code> and <code>?</code> in Kotlin</li><li>Lambda: <code>Func&lt;int, int&gt; f = (x) =&gt; x * x</code></li><li><code>using</code>:  automatically clean <code>IDisposable</code>  once executed out of the scope</li><li>Dynamic objects:  using <code>System.Dynamic.ExpandoObject</code> to dynamically create fields.</li><li><code>IQueryable</code>: query abilites for collection types: <code>Sort</code>, <code>Select</code>(map), <code>Where</code>(filter), reduce.</li><li>Type inference: <code>var</code> notice there is another keyword <code>readonly</code> to enforce immutablity</li><li>Implicit objects based on anonymous types: <code>bikes.Select(b=&gt;new &#123; Name = b.Name, IsAwesome = !b.IsBroken &amp;&amp; b.HasTassles &#125;);</code></li><li>Parallel LINQ: <code>bikes.AsParallel().Where(b =&gt; b.Wheels == 3).Select(b =&gt; b.Name);</code> The system will take care of all the threading and sync</li><li>LINQ execution is delayed: the operations only fire when data accessed</li><li><code>catch(...) when (..)</code></li><li>Static <code>using</code>: Direct access static members without the class name</li><li>Tuples (C#7 and later): can have multiple elements, can be destructured, can have property names.</li><li>Pattern Matching<ul><li>Extreme flexibility for if and switch expressions and many sugaring.</li></ul></li><li>Local Functions: Nest function in function</li></ul><h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h2><ul><li>Access modifiers: <code>public/private/protected/internal</code></li><li>get/set method sugaring: <code>public int i &#123;get &#123; ... &#125;; private set;&#125;</code></li><li>readonly properties that actcually return an expression of other properties: <code>public string LongName =&gt; Name + &quot; &quot; + _speed + &quot; speed&quot;;</code></li><li><code>base</code>: C#’s <code>super</code></li><li>Secondary constructors can “inherit” <code>base</code> or <code>this</code>  constructors, just like Kotlin</li><li>Indexer of a class: <code>public string this[int i] &#123; get &#123;..&#125;; set &#123;...&#125;; &#125;</code></li><li><code>override</code> is a KW: unlike in Java, like Kotlin.</li><li><code>virtual</code> : same as <code>open</code> in Kotlin, Java only uses <code>final</code></li><li><code>partial</code>: you can write a class in multiple files.</li><li>Attribute: C#’s annotation</li><li>Delegates and Events: Type-safe function pointers<ul><li>Delegate: <code>public delegate void MyDelegate(string message);</code> to decl a delegate type, then can be initialized with a function that matches signature.</li><li>Multicast/Compose: can use <code>+</code> operator to chain multiple function to a delegate.</li><li>Event: can be created using a delegate type: <code>public static event MyDelegate MyEvent;</code> and can use + or - to modify it’s observers. used in event handling in GUI frameworks.</li></ul></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>C#</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter?</title>
     <link href="/StaticBlog/en/2024/03/26/jellyfinTranscodeBench/"/>
     <url>/StaticBlog/en/2024/03/26/jellyfinTranscodeBench/</url>
