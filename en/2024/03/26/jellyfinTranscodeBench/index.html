@@ -13,15 +13,15 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A benchmark on Jellyfin transcoding efficiency on Intel N100 processor and NVIDIA RTX 4090, trying to figure out the raw performance of the media engine and possible bottlenecks.">
+  <meta name="description" content="A benchmark on Jellyfin transcoding efficiency on various types systems, trying to figure out the raw performance of the media engine and possible bottlenecks.">
   <meta name="author" content="Zeyu Zhang">
   <meta name="keywords" content="">
-  <meta name="description" content="A benchmark on Jellyfin transcoding efficiency on Intel N100 processor and NVIDIA RTX 4090, trying to figure out the raw performance of the media engine and possible bottlenecks.">
+  <meta name="description" content="A benchmark on Jellyfin transcoding efficiency on various types systems, trying to figure out the raw performance of the media engine and possible bottlenecks.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Toward Jellyfin Homeserver: Does CPU and GPU 3D performance matter?">
 <meta property="og:url" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/index.html">
 <meta property="og:site_name" content="A Random Blog">
-<meta property="og:description" content="A benchmark on Jellyfin transcoding efficiency on Intel N100 processor and NVIDIA RTX 4090, trying to figure out the raw performance of the media engine and possible bottlenecks.">
+<meta property="og:description" content="A benchmark on Jellyfin transcoding efficiency on various types systems, trying to figure out the raw performance of the media engine and possible bottlenecks.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004515287.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005327975.png">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326004908964.png">
 <meta property="og:image" content="https://randomnamer.github.io/2024/03/26/jellyfinTranscodeBench/image-20240326005114050.png">
 <meta property="article:published_time" content="2024-03-26T04:39:35.000Z">
-<meta property="article:modified_time" content="2024-09-22T06:39:28.247Z">
+<meta property="article:modified_time" content="2024-10-20T19:52:29.112Z">
 <meta property="article:author" content="Zeyu Zhang">
 <meta property="article:tag" content="NAS">
 <meta property="article:tag" content="Jellyfin">
@@ -207,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.1k words
+      6.9k words
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 min to read
+      9 min to read
     </span>
   
 
@@ -260,8 +260,8 @@
             <div class="markdown-body">
               <blockquote>
 <ul>
-<li>Just a record of my experiment on these 3 systems.</li>
-<li>Primarily using 4K 120Mbps and “720p” (actually 1080p) 8Mbps presets</li>
+<li>Updated: AMD RDNA3 iGPU system using the Z1 Extreme (7840U) and Apple Silicon system with M1 Pro (1st gen, one encoder).</li>
+<li>Primarily using 4K 120Mbps (Unlimited) and “720p” (actually 1080p) 8Mbps presets</li>
 <li>Use HDR tone mapping by default</li>
 <li>Using Defualt CRF of 23 for AVC and 28 for HEVC.</li>
 <li>I prefer subtitle burn-in since it eleminates any subtitle sync issue in browsers. For HDR contents I prefer direct streaming using 3rd party apps to deal with subtitles.</li>
@@ -272,11 +272,14 @@
 <li>Low powered machine with a 4 E-core Intel N100 CPU, 8GB DDR4 memory and the powerful Intel Gen12 media encoders.</li>
 <li>High powered machine with a 16-Core AMD Ryzen 9 7950X3D CPU, 64GB DDR5 memory and NVIDIA RTX 4090 graphics card, eliminating any possible bottleneck on CPU and GPU 3D engine.</li>
 <li>ROG Ally with AMD Ryzen Z1 Extreme, 16GB LPDDR5 memory and Radeon 780M RDNA3 GPU to simulate 7840U/7840HS/7940HS/8845HS AMD mini PCs. I only did a quick test of JW4 and SW2 4Kto4K subtitle burn-in on this setup.</li>
+<li>Apple MacBook Pro 2021 with M1 Pro, 32GB LPDDR5 memory and 14-core Apple GPU (single encoder). The performance should be on par with M1 Mac Minis – which is a popular mini PC / server choice when prices are right.</li>
 </ol>
 <h1 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h1><p> The result is somewhat unexpected, the intel N100 is constantly having its fast media engines underloaded when burning subtitles in Linux, and virtually everywhere in Windows. In Windows <code>ffmpeg</code> process can easily saturate the CPU just pulling files via SMB. On the other hand, the Intel media engine, even fully loaded, is 3-4x slower than the latest NVENC, and that’s only one of the total of 2.</p>
 <p> While Intel’s low power iGPU is still my go for always-on home media servers, a beefier setup is certainly useful if you want to serve multiple users simultanously.</p>
 <p> The AMD setup is somewhere in between. It has a powerful 8-core Zen 4 CPU and 12CU RDNA3 GPU to eliminate any other bottlenecks. It is nearly 2x as fast as the N100 setup, though the media codec of the latter is not fully utilized due to GPU bottleneck. </p>
-<p> I did logged the start play and seek time on the AMD and Intel setups with footage JW4, 4Kto4K sub burn-in settings. The AMD 7840U family took about 9s to start playing and 5s to seek, while the N100 took about 10.5s and 6s.</p>
+<p> Apple silicon is a blackbox hardware and on my set up I can’t really see which hardware is bottlenecked, probably the famous media engine since both the CPU and GPU are far from full load. In all it’s slower than the AMD iGPU setup. Perhaps newer M-series chips could perform better but the M1 Mac Mini is the only cost-effective machine for a home server, and it’s already slower than AMD 7840HS mini PCs in terms of transcoding.</p>
+ <!-- I did logged the start play and seek time on the AMD and Intel setups with footage JW4, 4Kto4K sub burn-in settings. The AMD 7840U family took about 9s to start playing and 5s to seek, while the N100 took about 10.5s and 6s. -->
+
 <h2 id="For-N100"><a href="#For-N100" class="headerlink" title="For N100"></a>For N100</h2><ul>
 <li>VAAPI makes no  difference</li>
 <li>Low-power encoder is slightly faster</li>
@@ -294,6 +297,10 @@
 <h2 id="For-AMD-7840U-like-SoCs"><a href="#For-AMD-7840U-like-SoCs" class="headerlink" title="For AMD 7840U-like SoCs:"></a>For AMD 7840U-like SoCs:</h2><ul>
 <li>No bottleneck on CPU or GPU</li>
 <li>Draws ~25w power with CPU at 3.2GHz (turbo boost off) and GPU at 0.8-1.6GHz.</li>
+</ul>
+<h2 id="For-Apple-M1-family"><a href="#For-Apple-M1-family" class="headerlink" title="For Apple M1 family"></a>For Apple M1 family</h2><ul>
+<li>Faster than the N100 by a little bit with same level of low power consumption.<br>)</li>
+<li>Not cost effective but certainlly power saving.</li>
 </ul>
 <h1 id="Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux"><a href="#Intel-N100-with-Intel-UHD-Graphics-24EUs-750MHz-Linux" class="headerlink" title="Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux"></a>Intel N100 with Intel UHD Graphics, 24EUs@750MHz, Linux</h1><h2 id="JW4"><a href="#JW4" class="headerlink" title="JW4"></a>JW4</h2><ul>
 <li><p>Bitrate: 67.4Mbps</p>
@@ -550,7 +557,7 @@
 <li><p>without sub burn-in: 910fps </p>
 </li>
 </ul>
-<h1 id="AMD-Ryzen-Z1-Extreme-12CU-82-68-x4e-x41-x33-x40-x30-46-x38-x2d-x32-46-55-x47-x48-x7a"><a href="#AMD-Ryzen-Z1-Extreme-12CU-82-68-x4e-x41-x33-x40-x30-46-x38-x2d-x32-46-55-x47-x48-x7a" class="headerlink" title="AMD Ryzen Z1 Extreme, 12CU &#82;&#68;&#x4e;&#x41;&#x33;&#x40;&#x30;&#46;&#x38;&#x2d;&#x32;&#46;&#55;&#x47;&#x48;&#x7a;"></a>AMD Ryzen Z1 Extreme, 12CU <a href="mailto:&#82;&#68;&#x4e;&#x41;&#x33;&#x40;&#x30;&#46;&#x38;&#x2d;&#x32;&#46;&#55;&#x47;&#x48;&#x7a;">&#82;&#68;&#x4e;&#x41;&#x33;&#x40;&#x30;&#46;&#x38;&#x2d;&#x32;&#46;&#55;&#x47;&#x48;&#x7a;</a></h1><h2 id="JW4-3"><a href="#JW4-3" class="headerlink" title="JW4"></a>JW4</h2><ul>
+<h1 id="AMD-Ryzen-Z1-Extreme-12CU-82-68-x4e-65-x33-64-48-x2e-56-45-50-46-55-71-72-122"><a href="#AMD-Ryzen-Z1-Extreme-12CU-82-68-x4e-65-x33-64-48-x2e-56-45-50-46-55-71-72-122" class="headerlink" title="AMD Ryzen Z1 Extreme, 12CU &#82;&#68;&#x4e;&#65;&#x33;&#64;&#48;&#x2e;&#56;&#45;&#50;&#46;&#55;&#71;&#72;&#122;"></a>AMD Ryzen Z1 Extreme, 12CU <a href="mailto:&#82;&#68;&#x4e;&#65;&#x33;&#64;&#48;&#x2e;&#56;&#45;&#50;&#46;&#55;&#71;&#72;&#122;">&#82;&#68;&#x4e;&#65;&#x33;&#64;&#48;&#x2e;&#56;&#45;&#50;&#46;&#55;&#71;&#72;&#122;</a></h1><h2 id="JW4-3"><a href="#JW4-3" class="headerlink" title="JW4"></a>JW4</h2><ul>
 <li><p>Bitrate: 67.4Mbps</p>
 </li>
 <li><p>Purpose: Remux 4K HDR10</p>
@@ -562,6 +569,19 @@
 <li>Bitrate: 41.5Mbps</li>
 <li>Purpose: High Bitrate Bluray 4K HDR10</li>
 <li>4Kto4K, sub burn-in: ~110fps</li>
+</ul>
+<h1 id="Apple-M1-Pro-14-core-Apple-GPU"><a href="#Apple-M1-Pro-14-core-Apple-GPU" class="headerlink" title="Apple M1 Pro, 14-core Apple GPU"></a>Apple M1 Pro, 14-core Apple GPU</h1><h2 id="JW4-4"><a href="#JW4-4" class="headerlink" title="JW4"></a>JW4</h2><ul>
+<li><p>Bitrate: 67.4Mbps</p>
+</li>
+<li><p>Purpose: Remux 4K HDR10</p>
+</li>
+<li><p>4Kto4K, tone mapping, sub burn-in: 48fps (to AVC), 70fps (to HEVC)</p>
+</li>
+</ul>
+<h2 id="SW2-4"><a href="#SW2-4" class="headerlink" title="SW2"></a>SW2</h2><ul>
+<li>Bitrate: 41.5Mbps</li>
+<li>Purpose: High Bitrate Bluray 4K HDR10</li>
+<li>4Kto4K, sub burn-in: ~70fps (to AVC), ~90fps (to HEVC)</li>
 </ul>
 
             </div>
