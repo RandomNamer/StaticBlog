@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>Local LM servers test results</title>
+    <link href="/StaticBlog/en/2025/03/09/lms-local-test/"/>
+    <url>/StaticBlog/en/2025/03/09/lms-local-test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h1><ul><li><strong>Qwen Family</strong>: 7b, 14b, 32b</li><li><strong>LLama</strong>: 8b, 70b</li><li>Phi 4</li></ul><h1 id="Machines"><a href="#Machines" class="headerlink" title="Machines"></a>Machines</h1><ul><li>Apple M4: 10C Apple GPU (family 9), 120GB/s memory</li><li>Apple M1 Pro: 14C Apple GPU (family 9). 200GB/s memory</li><li>NVIDIA RTX 4090 GPU: 128 Ada SMs, 1100GB/s memory</li><li>AMD Ryzen R9 7950X3D CPU: 16C CPU, ~90GB/s memory</li></ul><h1 id="Token-s-vs-Power"><a href="#Token-s-vs-Power" class="headerlink" title="Token/s vs Power"></a>Token/s vs Power</h1><blockquote><p>Chip power draw only</p></blockquote><table><thead><tr><th>Machine</th><th>7B/8B</th><th>14B</th><th>32B</th><th>70B</th><th>Power</th></tr></thead><tbody><tr><td>M4 16G</td><td>20-22</td><td>8</td><td>-</td><td>-</td><td>15W</td></tr><tr><td>M1 Pro 32G</td><td>23-26</td><td>11</td><td>6</td><td>-</td><td>21W</td></tr><tr><td>RTX 4090 24G</td><td>~90</td><td>57</td><td>35</td><td>-</td><td>~350W</td></tr><tr><td>7950X3D 64G</td><td>15</td><td>-</td><td>-</td><td>~3</td><td>~100W</td></tr></tbody></table>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>LLM</tag>
+      
+      <tag>self hosting</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C# Quick Start</title>
     <link href="/StaticBlog/en/2024/06/24/csharp-quick-start/"/>
     <url>/StaticBlog/en/2024/06/24/csharp-quick-start/</url>
