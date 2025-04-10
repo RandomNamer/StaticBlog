@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/StaticBlog/img/favicon.png">
+  <link rel="icon" href="/StaticBlog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="记录dmzj备份脚本更新过程中的一些新东西。">
+  <meta name="author" content="Zeyu Zhang">
+  <meta name="keywords" content="">
+  <meta name="description" content="记录dmzj备份脚本更新过程中的一些新东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小小的更新">
+<meta property="og:url" content="https://randomnamer.github.io/2025/04/10/dmzj-update-coreToken/index.html">
+<meta property="og:site_name" content="A Random Blog">
+<meta property="og:description" content="记录dmzj备份脚本更新过程中的一些新东西。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://randomnamer.github.io/2025/04/10/dmzj-update-coreToken/coreTokenFailed.png">
+<meta property="article:published_time" content="2025-04-10T07:35:23.000Z">
+<meta property="article:modified_time" content="2025-04-10T09:14:11.237Z">
+<meta property="article:author" content="Zeyu Zhang">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://randomnamer.github.io/2025/04/10/dmzj-update-coreToken/coreTokenFailed.png">
+  
+  <title>小小的更新 - A Random Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/StaticBlog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/StaticBlog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/StaticBlog/assets/icon/iconfont/iconfont.css">
+<link rel="stylesheet" href="/StaticBlog/css/layout.css">
+<link rel="stylesheet" href="/StaticBlog/css/decoration.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"randomnamer.github.io","root":"/StaticBlog/","version":"1.8.12","typing":{"enable":true,"typeSpeed":40,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"position":"left"},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/StaticBlog/local-search.xml"};
+  </script>
+  <script  src="/StaticBlog/js/utils.js" ></script>
+  <script  src="/StaticBlog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/StaticBlog/">
+      <strong>RandomNamer&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/StaticBlog/en/">
+                <i class="iconfont icon-in-alt"></i>
+                English
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class=" iconfont icon-search-alt" ></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/StaticBlog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="小小的更新">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-04-10 00:35" pubdate>
+        2025年4月10日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x post-page-container ">
+    
+      <div class="d-none d-lg-block col-lg-3 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+     
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">小小的更新</h1>
+            
+             
+            
+             <p class="note-info"> 该页面有相关的 <span style="font-weight: 700;"><a target="_blank" rel="noopener" href="https://github.com/RandomNamer/dmzj-reimagine " >个人项目</a></span> , 您在文章中看到的某些代码片段可能会在其中。 </p>
+            
+            <div class="markdown-body">
+              <p>上周末终于抽出时间更新了一下之前写的 <a href="https://randomnamer.github.io/StaticBlog/2024/03/15/dmzjComic/">dmzj备份脚本</a>。一方面是因为最近工作稍微闲了些，另一方面则是由于一直主用的第三方 App 频繁抽风，也让我萌生了干脆毕其功于一役、彻底转向 self-hosting 的念头。</p>
+<p>于是又重新扒了一遍他们的 APK（不确定是不是因为美国 IP 的缘故，官方应用的广告似乎收敛了不少，可用性尚可，但考虑到他们的 App 实在写得有些💩，我还是提不起兴趣去用）。这次倒是发现了一些新东西，简单做个记录。</p>
+<h1 id="API-changes"><a href="#API-changes" class="headerlink" title="API changes"></a>API changes</h1><p>这次距离上次更新时间并不算久，其实整体变化不大。虽然如此，他们的网络请求写法依然挺雷人的，每次看到都忍不住多看两眼：长长的Query直接拼字符串；用中文字符串充当枚举走分支判断来加一些特定参数；关键接口都要加密处理，但依旧不肯用 Retrofit，而是直接在 UI 层手动解密，整个突出一个“自由”。</p>
+<p>真正变化的只有API路径改成了<code>nnv4api.$&#123;DOMAIN&#125;/v2/comic/xxx</code>, 这个会强制校验<code>coreToken</code>和<code>uid</code>，然后proto又加了一个字段名曰<code>isCanRead</code>。让Claude帮忙对应更新了下。</p>
+<h1 id="coreToken-revisit"><a href="#coreToken-revisit" class="headerlink" title="coreToken revisit"></a>coreToken revisit</h1><p>之前的API其实并不会用到这个玩意，于是也没细究，但新的接口终于加上了强制校验，token不对直接什么都不返回。</p>
+<img src="coreTokenFailed.png" srcset="/StaticBlog/img/loading.gif" lazyload />
+
+
+<p>于是不得不逆向分析一下这个 <code>libdmzj.so</code>，看看这个所谓的加密 token 生成算法是否藏有黑科技。毕竟，遇事不决就写 JNI，倒也有几分大厂 Mobile Arch 的味道了。然而……这个 token 的生成逻辑无非就是两次hash：先通过 <code>getSignatureBytes</code> 获取应用签名并进行一次 MD5，然后将其与 timestamp 和 salt 拼接后再进行一次 MD5，最终将该 MD5 与 timestamp 拼接，生成 token。</p>
+<p>其实需要奇文共赏的是这个<code>getSignatureBytes</code>方法。不难发现，它本质上就是Java反射代码，却被包装成 JNI 来调用一个 Android Framework 的公共 API (也就是说，并不需要反射)。在Kotlin里可以one-liner写的功能，却非要用反射再加 JNI，可谓是双重的脱裤子放屁。</p>
+<p>Before</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-comment">/* WARNING: Unknown calling convention */</span><br><br><span class="hljs-function">jbyteArray <span class="hljs-title">getSignatureByte</span><span class="hljs-params">(JNIEnv *env,jobject context)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"></span>&#123;<br>  jclass p_Var1;<br>  jmethodID p_Var2;<br>  jobject p_Var3;<br>  jclass p_Var4;<br>  jmethodID methodID;<br>  jobject p_Var5;<br>  <span class="hljs-keyword">char</span> *pcVar6;<br>  jfieldID p_Var7;<br>  jclass packageManager_clazz;<br>  jclass packageinfo_clazz;<br>  jobjectArray signature_arr;<br>  jclass signature_clazz;<br>  jmethodID methodID_getPackageManager;<br>  jmethodID methodID_getPackageName;<br>  jfieldID fieldID_signatures;<br>  jmethodID methodID_byteArray;<br>  <span class="hljs-keyword">char</span> *package_name;<br>  jstring application_package;<br>  jobject packageInfo;<br>  jobject signature;<br>  jclass context_clazz;<br>  jobject packageManager;<br>  jmethodID methodID_getPackageInfo;<br>  <br>  p_Var1 = (*env-&gt;functions-&gt;GetObjectClass)(env,context);<br>  p_Var2 = (*env-&gt;functions-&gt;GetMethodID)<br>                     (env,p_Var1,<span class="hljs-string">&quot;getPackageManager&quot;</span>,<span class="hljs-string">&quot;()Landroid/content/pm/PackageManager;&quot;</span>);<br>  p_Var3 = _JNIEnv::<span class="hljs-built_in">CallObjectMethod</span>(env,context,p_Var2);<br>  p_Var4 = (*env-&gt;functions-&gt;GetObjectClass)(env,p_Var3);<br>  p_Var2 = (*env-&gt;functions-&gt;GetMethodID)<br>                     (env,p_Var4,<span class="hljs-string">&quot;getPackageInfo&quot;</span>,<br>                      <span class="hljs-string">&quot;(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;&quot;</span>);<br>  methodID = (*env-&gt;functions-&gt;GetMethodID)(env,p_Var1,<span class="hljs-string">&quot;getPackageName&quot;</span>,<span class="hljs-string">&quot;()Ljava/lang/String;&quot;</span>);<br>  p_Var5 = _JNIEnv::<span class="hljs-built_in">CallObjectMethod</span>(env,context,methodID);<br>  pcVar6 = (*env-&gt;functions-&gt;GetStringUTFChars)(env,(jstring)p_Var5,(jboolean *)<span class="hljs-number">0x0</span>);<br>  __android_log_print(<span class="hljs-number">3</span>,<span class="hljs-string">&quot;dmzj_core&quot;</span>,<span class="hljs-string">&quot;packageName: %s&quot;</span>,pcVar6);<br>  p_Var3 = _JNIEnv::<span class="hljs-built_in">CallObjectMethod</span>(env,p_Var3,p_Var2,p_Var5,<span class="hljs-number">0x40</span>);<br>  p_Var1 = (*env-&gt;functions-&gt;GetObjectClass)(env,p_Var3);<br>  p_Var7 = (*env-&gt;functions-&gt;GetFieldID)(env,p_Var1,<span class="hljs-string">&quot;signatures&quot;</span>,<span class="hljs-string">&quot;[Landroid/content/pm/Signature;&quot;</span>);<br>  p_Var3 = (*env-&gt;functions-&gt;GetObjectField)(env,p_Var3,p_Var7);<br>  p_Var3 = (*env-&gt;functions-&gt;GetObjectArrayElement)(env,(jobjectArray)p_Var3,<span class="hljs-number">0</span>);<br>  p_Var1 = (*env-&gt;functions-&gt;GetObjectClass)(env,p_Var3);<br>  p_Var2 = (*env-&gt;functions-&gt;GetMethodID)(env,p_Var1,<span class="hljs-string">&quot;toByteArray&quot;</span>,<span class="hljs-string">&quot;()[B&quot;</span>);<br>  p_Var3 = _JNIEnv::<span class="hljs-built_in">CallObjectMethod</span>(env,p_Var3,p_Var2);<br>  <span class="hljs-keyword">return</span> (jbyteArray)p_Var3;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>After</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">pm.getPackageInfo(context.packageName, PackageManager.GET_SIGNATURES).signatures!![<span class="hljs-number">0</span>].toByteArray()<br></code></pre></td></tr></table></figure>
+
+
+<p>而且说到底，通过编写 native 方法来规避 ART 的隐藏 API 检查，压根也不是这么实现的。Google 的工程师可没笨到只在 Java 层的 <code>getDeclaredMethod</code> 中加检查，而在 JNI 的 <code>GetMethodID</code> 上就放松警惕。下面是一个正确的规避方式。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-function">JNIEXPORT jint JNICALL <span class="hljs-title">JNI_OnLoad</span><span class="hljs-params">(JavaVM *vm, <span class="hljs-keyword">void</span> *reserved)</span> </span>&#123;<br>    JNIEnv *env;<br>    <span class="hljs-keyword">if</span> (vm-&gt;<span class="hljs-built_in">GetEnv</span>((<span class="hljs-keyword">void</span> **) &amp;env, JNI_VERSION_1_6) != JNI_OK) &#123;<br>        <span class="hljs-keyword">return</span> JNI_ERR;<br>    &#125;<br>    <br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *VMRuntime_class_name = <span class="hljs-string">&quot;dalvik/system/VMRuntime&quot;</span>;<br>    jclass vmRumtime_class = env-&gt;<span class="hljs-built_in">FindClass</span>(VMRuntime_class_name);<br>    <span class="hljs-keyword">void</span> *getRuntime_method = env-&gt;<span class="hljs-built_in">GetStaticMethodID</span>(vmRumtime_class,<br>                                              <span class="hljs-string">&quot;getRuntime&quot;</span>,<br>                                              <span class="hljs-string">&quot;()Ldalvik/system/VMRuntime;&quot;</span>);<br>    jobject vmRuntime_instance = env-&gt;<span class="hljs-built_in">CallStaticObjectMethod</span>(vmRumtime_class, (jmethodID)getRuntime_method);<br><br>    jstring pattern = env-&gt;<span class="hljs-built_in">NewStringUTF</span>(<span class="hljs-string">&quot;L&quot;</span>);<br>    jclass cls = env-&gt;<span class="hljs-built_in">FindClass</span>(<span class="hljs-string">&quot;java/lang/String&quot;</span>);<br>    jobjectArray jarray = env-&gt;<span class="hljs-built_in">NewObjectArray</span>(<span class="hljs-number">1</span>, cls, <span class="hljs-literal">nullptr</span>);<br>    env-&gt;<span class="hljs-built_in">SetObjectArrayElement</span>(jarray, <span class="hljs-number">0</span>, pattern);<br><br>    <span class="hljs-keyword">void</span> *setHiddenApiExemptions_method = env-&gt;<span class="hljs-built_in">GetMethodID</span>(vmRumtime_class,<br>                                                          <span class="hljs-string">&quot;setHiddenApiExemptions&quot;</span>,<br>                                                          <span class="hljs-string">&quot;([Ljava/lang/String;)V&quot;</span>);<br>    env-&gt;<span class="hljs-built_in">CallVoidMethod</span>(vmRuntime_instance, (jmethodID)setHiddenApiExemptions_method, jarray);<br>    <span class="hljs-keyword">return</span> JNI_VERSION_1_6;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>所以他们为什么要在JNI写这个coreToken的生成逻辑呢？到头来还是希腊奶。</p>
+<blockquote>
+<p>getCoreToken() disassembly (trimmed):</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">jstring <span class="hljs-title">getToken</span><span class="hljs-params">(JNIEnv *env,jclass clazz,jobject context)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//...</span><br>  <br>  lVar3 = tpidr_el0;<br>  lVar10 = *(<span class="hljs-keyword">long</span> *)(lVar3 + <span class="hljs-number">0x28</span>);<br>  <span class="hljs-built_in">gettimeofday</span>(&amp;local_b0,(<span class="hljs-keyword">__timezone_ptr_t</span>)<span class="hljs-number">0x0</span>);<br>  <span class="hljs-built_in">sprintf</span>(certMD5 + <span class="hljs-number">0x3c</span>,(<span class="hljs-keyword">char</span> *)<span class="hljs-number">0xb</span>,&amp;DAT_0012aa7a,local_b0.tv_sec);<br>  std::__ndk1::basic_string&lt;&gt;::basic_string&lt;<span class="hljs-keyword">nullptr_t</span>&gt;(&amp;local_108,certMD5 + <span class="hljs-number">0x3c</span>);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111348 to 00111353 has its CatchHandler @ 00111714 */</span><br>  p_Var7 = <span class="hljs-built_in">getSignatureByte</span>(env,context);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111360 to 0011136b has its CatchHandler @ 00111710 */</span><br>  jVar6 = (*env-&gt;functions-&gt;GetArrayLength)(env,(jarray)p_Var7);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111378 to 00111387 has its CatchHandler @ 0011170c */</span><br>  __src = (*env-&gt;functions-&gt;GetByteArrayElements)(env,p_Var7,(jboolean *)<span class="hljs-number">0x0</span>);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111394 to 0011139b has its CatchHandler @ 00111708 */</span><br>  __s = operator_new[]((<span class="hljs-keyword">long</span>)(jVar6 + <span class="hljs-number">1</span>));<br>  <span class="hljs-built_in">memset</span>(__s,<span class="hljs-number">0</span>,(<span class="hljs-keyword">long</span>)(jVar6 + <span class="hljs-number">1</span>));<br>  sVar11 = (<span class="hljs-keyword">size_t</span>)jVar6;<br>  <span class="hljs-built_in">memcpy</span>(__s,__src,sVar11);<br>                    <span class="hljs-comment">/* try &#123; // try from 001113d4 to 001113e7 has its CatchHandler @ 00111704 */</span><br>  <span class="hljs-built_in">hashByteArray</span>(HASH_MD5,__s,sVar11,(<span class="hljs-keyword">char</span> *)&amp;local_b0);<br>  pcVar4 = APK_PACKAGE;<br>                    <span class="hljs-comment">/* try &#123; // try from 001113f0 to 001113fb has its CatchHandler @ 00111700 */</span><br>  std::__ndk1::basic_string&lt;&gt;::basic_string&lt;<span class="hljs-keyword">nullptr_t</span>&gt;(&amp;local_158,(<span class="hljs-keyword">char</span> *)&amp;local_b0);<br>  sVar11 = <span class="hljs-built_in">strlen</span>(pcVar4);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111408 to 00111417 has its CatchHandler @ 001116ec */</span><br>  pbVar8 = std::__ndk1::basic_string&lt;&gt;::<span class="hljs-built_in">insert</span>(&amp;local_158,<span class="hljs-number">0</span>,(value_type *)pcVar4,sVar11);<br>  local_140 = pbVar8;<br>  pbVar8 = <span class="hljs-literal">NULL</span>;<br>  __n = (ulong)((byte)local_108 &gt;&gt; <span class="hljs-number">1</span>);<br>  uVar2 = (pointer)(value_type *)((ulong)&amp;local_108 | <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> (((byte)local_108 &amp; <span class="hljs-number">1</span>) != <span class="hljs-number">0</span>) &#123;<br>    __n = local_108.__size_;<br>    uVar2 = local_108.__data_;<br>  &#125;<br>                    <span class="hljs-comment">/* try &#123; // try from 00111450 to 00111457 has its CatchHandler @ 001116cc */</span><br>  pbVar8 = std::__ndk1::basic_string&lt;&gt;::<span class="hljs-built_in">append</span>(&amp;local_140,(value_type *)uVar2,__n);<br>  local_f0 = pbVar8;<br>  pbVar8 = <span class="hljs-literal">NULL</span>;<br>  pcVar4 = APK_TOKEN_SALT;<br>  sVar11 = <span class="hljs-built_in">strlen</span>(APK_TOKEN_SALT);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111484 to 0011148f has its CatchHandler @ 00111698 */</span><br>  pbVar8 = std::__ndk1::basic_string&lt;&gt;::<span class="hljs-built_in">append</span>(&amp;local_f0,(value_type *)pcVar4,sVar11);<br>  local_110 = pbVar8;<br>  sStack_118 = pbVar8.__size_;<br>  local_120 = pbVar8.__cap_;<br>  pbVar8 = <span class="hljs-literal">NULL</span>;<br>  pcVar1 = (pointer)((ulong)&amp;local_120 | <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> ((local_120 &amp; <span class="hljs-number">1</span>) != <span class="hljs-number">0</span>) &#123;<br>    pcVar1 = local_110;<br>  &#125;<br>                    <span class="hljs-comment">/* try &#123; // try from 001114e0 to 001114f7 has its CatchHandler @ 00111688 */</span><br>  __android_log_print(<span class="hljs-number">3</span>,<span class="hljs-string">&quot;dmzj_core&quot;</span>,<span class="hljs-string">&quot;token string: %s&quot;</span>,pcVar1);<br>  uStack_c8 = <span class="hljs-number">0</span>;<br>  local_d0 = <span class="hljs-number">0</span>;<br>  uStack_b8 = <span class="hljs-number">0</span>;<br>  uStack_c0 = <span class="hljs-number">0</span>;<br>  bVar5 = (local_120 &amp; <span class="hljs-number">1</span>) != <span class="hljs-number">0</span>;<br>  pcVar1 = (pointer)((ulong)&amp;local_120 | <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> (bVar5) &#123;<br>    pcVar1 = local_110;<br>  &#125;<br>  local_f0 = <span class="hljs-literal">NULL</span>;<br>  numBytes = local_120 &gt;&gt; <span class="hljs-number">1</span> &amp; <span class="hljs-number">0x7f</span>;<br>  <span class="hljs-keyword">if</span> (bVar5) &#123;<br>    numBytes = sStack_118;<br>  &#125;<br>                    <span class="hljs-comment">/* try &#123; // try from 0011151c to 00111527 has its CatchHandler @ 00111684 */</span><br>  <span class="hljs-built_in">hashByteArray</span>(HASH_MD5,pcVar1,numBytes,(<span class="hljs-keyword">char</span> *)&amp;local_f0);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111528 to 0011153b has its CatchHandler @ 00111680 */</span><br>  std::__ndk1::<span class="hljs-keyword">operator</span>+&lt;&gt;(&amp;local_158,&amp;local_108,<span class="hljs-string">&quot;|&quot;</span>);<br>  sVar11 = <span class="hljs-built_in">strlen</span>((<span class="hljs-keyword">char</span> *)&amp;local_f0);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111548 to 00111553 has its CatchHandler @ 0011166c */</span><br>  pbVar8 = std::__ndk1::basic_string&lt;&gt;::<span class="hljs-built_in">append</span>(&amp;local_158,(value_type *)&amp;local_f0,sVar11);<br>  local_140 = pbVar8;<br>  pbVar8 = <span class="hljs-literal">NULL</span>;<br>  ...<br>  uVar2 = (<span class="hljs-keyword">char</span> *)((ulong)&amp;local_140 | <span class="hljs-number">1</span>);<br>                    <span class="hljs-comment">/* try &#123; // try from 00111594 to 001115cb has its CatchHandler @ 00111724 */</span><br> <span class="hljs-comment">//...</span><br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/StaticBlog/tags/Android/">Android</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/StaticBlog/2025/03/09/lms-local-test/">
+                        <span class="hidden-mobile">Local LM servers test results</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-1"></div>
+     
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrow-up-alt" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>Made with </a> <i class="iconfont icon-love"></i> <a> by </a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo </span></a> and <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>  Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/StaticBlog/js/events.js" ></script>
+<script  src="/StaticBlog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/StaticBlog/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/StaticBlog/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/StaticBlog/js/boot.js" ></script>
+
+
+</body>
+</html>
